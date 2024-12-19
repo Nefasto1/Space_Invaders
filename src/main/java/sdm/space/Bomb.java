@@ -30,4 +30,8 @@ public class Bomb {
     public boolean hasCollided() {
         return collided;
     }
+
+    public void collide() {
+        collided = true;
+    }
 }

@@ -36,4 +36,11 @@ public class TestBomb {
         Bomb bomb = new Bomb();
         assertFalse(bomb.hasCollided());
     }
+
+    @Test
+    public void checkHasCollidedAfterCollision() {
+        Bomb bomb = new Bomb();
+        bomb.collide();
+        assertTrue(bomb.hasCollided());
+    }
 }
