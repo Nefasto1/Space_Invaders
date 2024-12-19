@@ -17,4 +17,18 @@ public class TestShuttle {
                 () -> assertEquals(2, shuttle.getYPosition())
         );
     }
+
+    @Test
+    public void moveRightFromTwentyAndEight() {
+        int x = 20;
+        int y = 8;
+
+        Shuttle shuttle = new Shuttle(x, y);
+        shuttle.moveRight();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(22, shuttle.getXPosition()),
+                () -> assertEquals(8, shuttle.getYPosition())
+        );
+    }
+
 }
