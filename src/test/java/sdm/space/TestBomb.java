@@ -1,7 +1,6 @@
 package sdm.space;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.input.BomInput;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,6 +16,19 @@ public class TestBomb {
         assertAll("Check of all the coordinates",
                 () -> assertEquals(2, bomb.getXPosition()),
                 () -> assertEquals(0, bomb.getYPosition())
+        );
+    }
+
+    @Test
+    public void moveFromFiveAndSeven() {
+        int x = 5;
+        int y = 7;
+
+        Bomb bomb = new Bomb(x, y);
+        bomb.move();
+        assertAll("Check of all the coordinates",
+                () -> assertEquals(5, bomb.getXPosition()),
+                () -> assertEquals(2, bomb.getYPosition())
         );
     }
 }
