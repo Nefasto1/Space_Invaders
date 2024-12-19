@@ -20,4 +20,8 @@ public class Projectile {
     public int getYPosition() {
         return y;
     }
+
+    public boolean hasCollided() {
+        return true;
+    }
 }

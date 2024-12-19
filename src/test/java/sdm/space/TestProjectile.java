@@ -2,8 +2,7 @@ package sdm.space;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestProjectile {
     @Test
@@ -30,6 +29,10 @@ public class TestProjectile {
                 () -> assertEquals(5, projectile.getXPosition()),
                 () -> assertEquals(12, projectile.getYPosition())
         );
+    }
 
+    public void checkHasCollided() {
+        Projectile projectile = new Projectile();
+        assertTrue(projectile.hasCollided());
     }
 }
