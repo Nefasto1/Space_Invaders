@@ -60,11 +60,14 @@
 - ~~default -> True~~
 - ~~Die -> False~~
 
-# Projectle
+# Bomb
 ## Movement
 ### Move Down
-- (2, 5) -> (2, 9)
-- (5, 7) -> (5, 11)
+- (2, 5) -> (2, 0)
+- (5, 7) -> (5, 2)
+
+# Projectle
+## Movement
 ### Move Up
-- (2, 5) -> (2, 1)
-- (5, 7) -> (5, 3) 
+- (2, 5) -> (2, 10)
+- (5, 7) -> (5, 12) 
