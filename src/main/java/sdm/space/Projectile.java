@@ -9,6 +9,11 @@ public class Projectile {
         this.y = y;
     }
 
+    public Projectile() {
+        x = 0;
+        y = 0;
+    }
+
     public void move() {
         this.y +=5;
     }
