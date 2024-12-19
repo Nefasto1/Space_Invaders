@@ -21,4 +21,8 @@ public class Shuttle {
     public int getYPosition() {
         return y;
     }
+
+    public void moveLeft() {
+        x -= 2;
+    }
 }

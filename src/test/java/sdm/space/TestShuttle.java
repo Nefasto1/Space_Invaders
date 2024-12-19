@@ -31,4 +31,33 @@ public class TestShuttle {
         );
     }
 
+    @Test
+    public void moveLeftFromTwoAndTwo() {
+        int x = 2;
+        int y = 2;
+
+        Shuttle shuttle = new Shuttle(x, y);
+        shuttle.moveLeft();
+
+        assertAll("Check all the coordinates",
+                () -> assertEquals(0, shuttle.getXPosition()),
+                () -> assertEquals(2, shuttle.getYPosition())
+        );
+    }
+
+    @Test
+    public void moveLeftFromTwentyAndEight() {
+        int x = 20;
+        int y = 8;
+
+        Shuttle shuttle = new Shuttle(x, y);
+        shuttle.moveLeft();
+
+        assertAll("Check all the coordinates",
+                () -> assertEquals(18, shuttle.getXPosition()),
+                () -> assertEquals(8, shuttle.getYPosition())
+        );
+    }
+
+
 }
