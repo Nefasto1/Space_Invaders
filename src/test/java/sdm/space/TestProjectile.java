@@ -31,8 +31,16 @@ public class TestProjectile {
         );
     }
 
-    public void checkHasCollided() {
+    @Test
+    public void checkHasCollidedDefault() {
         Projectile projectile = new Projectile();
+        assertFalse(projectile.hasCollided());
+    }
+
+    @Test
+    public void checkHasCollidedAfterCollision() {
+        Projectile projectile = new Projectile();
+        projectile.collide();
         assertTrue(projectile.hasCollided());
     }
 }

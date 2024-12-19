@@ -3,6 +3,7 @@ package sdm.space;
 public class Projectile {
     private int x;
     private int y;
+    private boolean collided=false;
 
     public Projectile(int x, int y) {
         this.x = x;
@@ -27,6 +28,10 @@ public class Projectile {
     }
 
     public boolean hasCollided() {
-        return true;
+        return collided;
+    }
+
+    public void collide() {
+        collided = true;
     }
 }
