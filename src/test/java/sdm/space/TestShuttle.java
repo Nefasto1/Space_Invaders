@@ -65,4 +65,12 @@ public class TestShuttle {
         assertTrue(shuttle.isAlive());
     }
 
+    @Test
+    public void checkIfAliveAfterDead() {
+        Shuttle shuttle = new Shuttle();
+        shuttle.die();
+
+        assertFalse(shuttle.isAlive());
+    }
+
 }

@@ -35,4 +35,8 @@ public class Shuttle {
     public boolean isAlive() {
         return alive;
     }
+
+    public void die() {
+        alive = false;
+    }
 }
