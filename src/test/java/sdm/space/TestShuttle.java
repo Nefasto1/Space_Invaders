@@ -59,5 +59,10 @@ public class TestShuttle {
         );
     }
 
+    @Test
+    public void checkIfAliveDefault() {
+        Shuttle shuttle = new Shuttle();
+        assertTrue(shuttle.isAlive());
+    }
 
 }
