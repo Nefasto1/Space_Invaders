@@ -3,6 +3,12 @@ package sdm.space;
 public class Bomb {
     private int x;
     private int y;
+    private boolean collided=false;
+
+    public Bomb() {
+        x = 0;
+        y = 0;
+    }
 
     public Bomb(int x, int y) {
         this.x = x;
@@ -19,5 +25,9 @@ public class Bomb {
 
     public int getYPosition() {
         return y;
+    }
+
+    public boolean hasCollided() {
+        return collided;
     }
 }

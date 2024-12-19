@@ -5,14 +5,14 @@ public class Projectile {
     private int y;
     private boolean collided=false;
 
-    public Projectile(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
     public Projectile() {
         x = 0;
         y = 0;
+    }
+
+    public Projectile(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public void move() {
