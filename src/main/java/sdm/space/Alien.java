@@ -31,4 +31,8 @@ public class Alien {
         x -= 2;
     }
 
+    public void moveDown() {
+        y += 15;
+    }
+
 }
