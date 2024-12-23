@@ -44,4 +44,17 @@ public class TestAlien {
         );
     }
 
+    @Test
+    public void moveLeftFromEightAndTen(){
+        int x = 8;
+        int y = 10;
+
+        Alien alien = new Alien(x,y);
+        alien.moveLeft();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(6, alien.getXPosition()),
+                () -> assertEquals(10, alien.getYPosition())
+        );
+    }
+
 }
