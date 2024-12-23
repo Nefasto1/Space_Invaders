@@ -27,4 +27,8 @@ public class Alien {
         return y;
     }
 
+    public void moveLeft() {
+        x -= 2;
+    }
+
 }

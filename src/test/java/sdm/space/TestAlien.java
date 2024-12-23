@@ -31,4 +31,17 @@ public class TestAlien {
         );
     }
 
+    @Test
+    public void moveLeftFromTwoAndFive(){
+        int x = 2;
+        int y = 5;
+
+        Alien alien = new Alien(x,y);
+        alien.moveLeft();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(0, alien.getXPosition()),
+                () -> assertEquals(5, alien.getYPosition())
+        );
+    }
+
 }
