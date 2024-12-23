@@ -89,5 +89,12 @@ public class TestAlien {
         assertTrue(alien.isAlive());
     }
 
+    @Test
+    public void checkIfAliveAfterDead(){
+        Alien alien  = new Alien();
+        alien.die();
+        assertFalse(alien.isAlive());
+    }
+
 
 }

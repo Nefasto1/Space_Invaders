@@ -39,4 +39,8 @@ public class Alien {
         return alive;
     }
 
+    public void die() {
+        alive = false;
+    }
+
 }
