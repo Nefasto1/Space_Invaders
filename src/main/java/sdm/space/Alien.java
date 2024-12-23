@@ -35,4 +35,8 @@ public class Alien {
         y += 15;
     }
 
+    public boolean isAlive() {
+        return alive;
+    }
+
 }

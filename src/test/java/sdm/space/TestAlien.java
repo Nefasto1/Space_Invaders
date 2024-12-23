@@ -83,5 +83,11 @@ public class TestAlien {
         );
     }
 
+    @Test
+    public void checkIfAliveDefault(){
+        Alien alien  = new Alien();
+        assertTrue(alien.isAlive());
+    }
+
 
 }
