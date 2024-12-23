@@ -70,5 +70,18 @@ public class TestAlien {
         );
     }
 
+    @Test
+    public void moveDownFromFiveAndTen(){
+        int x = 5;
+        int y = 10;
+
+        Alien alien = new Alien(x,y);
+        alien.moveDown();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(5, alien.getXPosition()),
+                () -> assertEquals(25, alien.getYPosition())
+        );
+    }
+
 
 }
