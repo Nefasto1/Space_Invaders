@@ -1,7 +1,7 @@
 package sdm.space;
 
 public class Projectile {
-    private int x;
+    private final int x;
     private int y;
     private boolean collided=false;
 
@@ -16,7 +16,10 @@ public class Projectile {
     }
 
     public void move() {
-        this.y +=5;
+        y += 5;
+        if (y > 500) {
+            y = 500;
+        }
     }
 
     public int getXPosition() {

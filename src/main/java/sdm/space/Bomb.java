@@ -1,7 +1,7 @@
 package sdm.space;
 
 public class Bomb {
-    private int x;
+    final private int x;
     private int y;
     private boolean collided=false;
 
