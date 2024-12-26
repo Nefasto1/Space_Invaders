@@ -1,18 +1,12 @@
 package sdm.space;
 
-public class Projectile {
-    private final int x;
-    private int y;
-    private boolean collided=false;
-
-    public Projectile() {
-        x = 0;
-        y = 0;
+public class Projectile extends Entity {
+    public Projectile(int x, int y) {
+        super(x, y);
     }
 
-    public Projectile(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Projectile() {
+        super();
     }
 
     public void move() {
@@ -20,21 +14,5 @@ public class Projectile {
         if (y > 500) {
             y = 500;
         }
-    }
-
-    public int getXPosition() {
-        return x;
-    }
-
-    public int getYPosition() {
-        return y;
-    }
-
-    public boolean hasCollided() {
-        return collided;
-    }
-
-    public void collide() {
-        collided = true;
     }
 }
