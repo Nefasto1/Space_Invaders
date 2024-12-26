@@ -32,6 +32,19 @@ public class TestBomb {
     }
 
     @Test
+    public void moveLimited() {
+        int x = 5;
+        int y = 0;
+
+        Bomb bomb = new Bomb(x, y);
+        bomb.move();
+        assertAll("Check of all the coordinates",
+                () -> assertEquals(5, bomb.getXPosition()),
+                () -> assertEquals(0, bomb.getYPosition())
+        );
+    }
+
+    @Test
     public void checkHasCollidedDefault() {
         Bomb bomb = new Bomb();
         assertFalse(bomb.hasCollided());

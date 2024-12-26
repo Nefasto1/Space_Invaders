@@ -17,6 +17,9 @@ public class Bomb {
 
     public void move() {
         y -= 5;
+        if (y < 0) {
+            y = 0;
+        }
     }
 
     public int getXPosition() {
