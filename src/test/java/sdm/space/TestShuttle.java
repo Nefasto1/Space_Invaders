@@ -60,6 +60,58 @@ public class TestShuttle {
     }
 
     @Test
+    public void moveRightLimit(){
+        // here I will assume that the screen is 500x500
+        int x = 500;
+        int y = 2;
+        Shuttle shuttle = new Shuttle(x,y);
+        shuttle.moveRight();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(500, shuttle.getXPosition()),
+                () -> assertEquals(2, shuttle.getYPosition())
+        );
+    }
+
+    @Test
+    public void moveRightLimitMinusOne(){
+        // here I will assume that the screen is 500x500
+        int x = 499;
+        int y = 4;
+        Shuttle shuttle = new Shuttle(x,y);
+        shuttle.moveRight();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(500, shuttle.getXPosition()),
+                () -> assertEquals(4, shuttle.getYPosition())
+        );
+    }
+
+    @Test
+    public void moveLeftLimit(){
+        // here I will assume that the screen is 500x500
+        int x = 0;
+        int y = 2;
+        Shuttle shuttle = new Shuttle(x,y);
+        shuttle.moveLeft();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(0, shuttle.getXPosition()),
+                () -> assertEquals(2, shuttle.getYPosition())
+        );
+    }
+
+    @Test
+    public void moveLeftLimitPlusOne(){
+        // here I will assume that the screen is 500x500
+        int x = 1;
+        int y = 4;
+        Shuttle shuttle = new Shuttle(x,y);
+        shuttle.moveLeft();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(0, shuttle.getXPosition()),
+                () -> assertEquals(4, shuttle.getYPosition())
+        );
+    }
+
+    @Test
     public void checkIfAliveDefault() {
         Shuttle shuttle = new Shuttle();
         assertTrue(shuttle.isAlive());
