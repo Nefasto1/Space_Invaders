@@ -45,6 +45,19 @@ public class TestProjectile {
     }
 
     @Test
+    public void movementLimitedShifted() {
+        int x = 5;
+        int y = 496;
+
+        Projectile projectile = new Projectile(x, y);
+        projectile.move();
+        assertAll("Check of all the coordinates",
+                () -> assertEquals(5, projectile.getXPosition()),
+                () -> assertEquals(500, projectile.getYPosition())
+        );
+    }
+
+    @Test
     public void checkHasCollidedDefault() {
         Projectile projectile = new Projectile();
         assertFalse(projectile.hasCollided());
