@@ -4,7 +4,8 @@ public class Shuttle {
     private int x;
     private final int y;
     private boolean alive = true;
-
+    private final int xRightLimit=500;
+    private final int xLeftLimit=0;
 
     public Shuttle(int x, int y) {
         this.x = x;
@@ -18,6 +19,16 @@ public class Shuttle {
 
     public void moveRight() {
         x += 2;
+        if (x>500){
+            x = 500;
+        }
+    }
+
+    public void moveLeft() {
+        x -= 2;
+        if (x<0){
+            x = 0;
+        }
     }
 
     public int getXPosition() {
@@ -26,10 +37,6 @@ public class Shuttle {
 
     public int getYPosition() {
         return y;
-    }
-
-    public void moveLeft() {
-        x -= 2;
     }
 
     public boolean isAlive() {
