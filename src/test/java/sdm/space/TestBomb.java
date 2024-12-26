@@ -58,15 +58,15 @@ public class TestBomb {
     }
 
     @Test
-    public void checkHasCollidedDefault() {
+    public void checkIsAliveDefault() {
         Bomb bomb = new Bomb();
-        assertFalse(bomb.isAlive());
+        assertTrue(bomb.isAlive());
     }
 
     @Test
-    public void checkHasCollidedAfterCollision() {
+    public void checkIsAliveAfterCollision() {
         Bomb bomb = new Bomb();
         bomb.die();
-        assertTrue(bomb.isAlive());
+        assertFalse(bomb.isAlive());
     }
 }

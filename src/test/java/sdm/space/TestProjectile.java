@@ -58,15 +58,15 @@ public class TestProjectile {
     }
 
     @Test
-    public void checkHasCollidedDefault() {
+    public void checkIsAliveDefault() {
         Projectile projectile = new Projectile();
-        assertFalse(projectile.isAlive());
+        assertTrue(projectile.isAlive());
     }
 
     @Test
-    public void checkHasCollidedAfterCollision() {
+    public void checkIsAliveAfterCollision() {
         Projectile projectile = new Projectile();
         projectile.die();
-        assertTrue(projectile.isAlive());
+        assertFalse(projectile.isAlive());
     }
 }
