@@ -45,6 +45,19 @@ public class TestBomb {
     }
 
     @Test
+    public void moveLimitedShifted() {
+        int x = 15;
+        int y = 4;
+
+        Bomb bomb = new Bomb(x, y);
+        bomb.move();
+        assertAll("Check of all the coordinates",
+                () -> assertEquals(15, bomb.getXPosition()),
+                () -> assertEquals(0, bomb.getYPosition())
+        );
+    }
+
+    @Test
     public void checkHasCollidedDefault() {
         Bomb bomb = new Bomb();
         assertFalse(bomb.hasCollided());
