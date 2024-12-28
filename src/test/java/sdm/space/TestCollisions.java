@@ -132,4 +132,131 @@ public class TestCollisions {
                 () -> assertFalse(shuttle.isAlive()));
     }
 
+    @Test
+    public void projectileAlienNotCollidedOnY() {
+        int alienX = 100;
+        int alienY = 125;
+
+        int projectileX = 100;
+        int projectileY = 100;
+
+        Alien alien = new Alien(alienX, alienY);
+        Projectile projectile = new Projectile(projectileX, projectileY);
+
+        assertFalse(CollisionChecker.check(projectile, alien));
+    }
+
+    @Test
+    public void projectileAlienCollidedOnY() {
+        int alienX = 100;
+        int alienY = 123;
+
+        int projectileX = 100;
+        int projectileY = 100;
+
+        Alien alien = new Alien(alienX, alienY);
+        Projectile projectile = new Projectile(projectileX, projectileY);
+
+        assertTrue(CollisionChecker.check(projectile, alien));
+    }
+
+    @Test
+    public void projectileAlienNotCollidedOnX() {
+        int alienX = 125;
+        int alienY = 100;
+
+        int projectileX = 100;
+        int projectileY = 100;
+
+        Alien alien = new Alien(alienX, alienY);
+        Projectile projectile = new Projectile(projectileX, projectileY);
+
+        assertFalse(CollisionChecker.check(projectile, alien));
+    }
+
+    @Test
+    public void projectileAlienCollidedOnX() {
+        int alienX = 123;
+        int alienY = 100;
+
+        int projectileX = 100;
+        int projectileY = 100;
+
+        Alien alien = new Alien(alienX, alienY);
+        Projectile projectile = new Projectile(projectileX, projectileY);
+
+        assertTrue(CollisionChecker.check(projectile, alien));
+    }
+
+    @Test
+    public void projectileAlienNotCollidedOnYCheckBothAlive() {
+        int alienX = 100;
+        int alienY = 125;
+
+        int projectileX = 100;
+        int projectileY = 100;
+
+        Alien alien = new Alien(alienX, alienY);
+        Projectile projectile = new Projectile(projectileX, projectileY);
+        CollisionChecker.checkAndDestroy(projectile, alien);
+
+        assertAll("Check they are both alive",
+                () -> assertTrue(projectile.isAlive()),
+                () -> assertTrue(alien.isAlive()));
+    }
+
+    @Test
+    public void projectileAlienCollidedOnYBothDead() {
+        int alienX = 100;
+        int alienY = 123;
+
+        int projectileX = 100;
+        int projectileY = 100;
+
+        Alien alien = new Alien(alienX, alienY);
+        Projectile projectile = new Projectile(projectileX, projectileY);
+
+        CollisionChecker.checkAndDestroy(projectile, alien);
+
+        assertAll("Check they are both dead",
+                () -> assertFalse(projectile.isAlive()),
+                () -> assertFalse(alien.isAlive()));
+    }
+
+    @Test
+    public void projectileAlienNotCollidedOnXBothAlive() {
+        int alienX = 125;
+        int alienY = 100;
+
+        int projectileX = 100;
+        int projectileY = 100;
+
+        Alien alien = new Alien(alienX, alienY);
+        Projectile projectile = new Projectile(projectileX, projectileY);
+
+        CollisionChecker.checkAndDestroy(projectile, alien);
+
+        assertAll("Check they are both Alive",
+                () -> assertTrue(projectile.isAlive()),
+                () -> assertTrue(alien.isAlive()));
+    }
+
+    @Test
+    public void projectileAlienCollidedOnXBothDead() {
+        int alienX = 123;
+        int alienY = 100;
+
+        int projectileX = 100;
+        int projectileY = 100;
+
+        Alien alien = new Alien(alienX, alienY);
+        Projectile projectile = new Projectile(projectileX, projectileY);
+
+        CollisionChecker.checkAndDestroy(projectile, alien);
+
+        assertAll("Check they are both dead",
+                () -> assertFalse(projectile.isAlive()),
+                () -> assertFalse(alien.isAlive()));
+    }
+
 }
