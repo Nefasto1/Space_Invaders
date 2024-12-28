@@ -12,7 +12,7 @@ public class Bomb extends Entity {
     public void move() {
         y -= 5;
         if (y < 0) {
-            y = 0;
+            super.die();
         }
     }
 }

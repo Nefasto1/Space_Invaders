@@ -12,7 +12,7 @@ public class Projectile extends Entity {
     public void move() {
         y += 5;
         if (y > 500) {
-            y = 500;
+            super.die();
         }
     }
 }

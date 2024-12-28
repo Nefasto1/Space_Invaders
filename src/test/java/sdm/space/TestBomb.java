@@ -32,32 +32,6 @@ public class TestBomb {
     }
 
     @Test
-    public void moveLimited() {
-        int x = 5;
-        int y = 0;
-
-        Bomb bomb = new Bomb(x, y);
-        bomb.move();
-        assertAll("Check of all the coordinates",
-                () -> assertEquals(5, bomb.getXPosition()),
-                () -> assertEquals(0, bomb.getYPosition())
-        );
-    }
-
-    @Test
-    public void moveLimitedShifted() {
-        int x = 15;
-        int y = 4;
-
-        Bomb bomb = new Bomb(x, y);
-        bomb.move();
-        assertAll("Check of all the coordinates",
-                () -> assertEquals(15, bomb.getXPosition()),
-                () -> assertEquals(0, bomb.getYPosition())
-        );
-    }
-
-    @Test
     public void checkIsAliveDefault() {
         Bomb bomb = new Bomb();
         assertTrue(bomb.isAlive());
@@ -67,6 +41,36 @@ public class TestBomb {
     public void checkIsAliveAfterCollision() {
         Bomb bomb = new Bomb();
         bomb.die();
+        assertFalse(bomb.isAlive());
+    }
+
+    @Test
+    public void checkIsAliveAfterInsideBoundaries() {
+        int x = 5;
+        int y = 400;
+
+        Bomb bomb = new Bomb(x, y);
+        bomb.move();
+        assertTrue(bomb.isAlive());
+    }
+
+    @Test
+    public void checkIsAliveAfterOutOfBounds() {
+        int x = 5;
+        int y = 0;
+
+        Bomb bomb = new Bomb(x, y);
+        bomb.move();
+        assertFalse(bomb.isAlive());
+    }
+
+    @Test
+    public void checkIsAliveAfterOutOfBoundsShifted() {
+        int x = 5;
+        int y = 4;
+
+        Bomb bomb = new Bomb(x, y);
+        bomb.move();
         assertFalse(bomb.isAlive());
     }
 }

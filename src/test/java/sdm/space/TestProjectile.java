@@ -32,32 +32,6 @@ public class TestProjectile {
     }
 
     @Test
-    public void movementLimited() {
-        int x = 5;
-        int y = 500;
-
-        Projectile projectile = new Projectile(x, y);
-        projectile.move();
-        assertAll("Check of all the coordinates",
-                () -> assertEquals(5, projectile.getXPosition()),
-                () -> assertEquals(500, projectile.getYPosition())
-        );
-    }
-
-    @Test
-    public void movementLimitedShifted() {
-        int x = 5;
-        int y = 496;
-
-        Projectile projectile = new Projectile(x, y);
-        projectile.move();
-        assertAll("Check of all the coordinates",
-                () -> assertEquals(5, projectile.getXPosition()),
-                () -> assertEquals(500, projectile.getYPosition())
-        );
-    }
-
-    @Test
     public void checkIsAliveDefault() {
         Projectile projectile = new Projectile();
         assertTrue(projectile.isAlive());
@@ -67,6 +41,36 @@ public class TestProjectile {
     public void checkIsAliveAfterCollision() {
         Projectile projectile = new Projectile();
         projectile.die();
+        assertFalse(projectile.isAlive());
+    }
+
+    @Test
+    public void checkIsAliveAfterInsideBoundaries() {
+        int x = 5;
+        int y = 400;
+
+        Projectile projectile = new Projectile(x, y);
+        projectile.move();
+        assertTrue(projectile.isAlive());
+    }
+
+    @Test
+    public void checkIsAliveAfterOutOfBounds() {
+        int x = 5;
+        int y = 500;
+
+        Projectile projectile = new Projectile(x, y);
+        projectile.move();
+        assertFalse(projectile.isAlive());
+    }
+
+    @Test
+    public void checkIsAliveAfterOutOfBoundsShifted() {
+        int x = 5;
+        int y = 496;
+
+        Projectile projectile = new Projectile(x, y);
+        projectile.move();
         assertFalse(projectile.isAlive());
     }
 }

@@ -1,6 +1,5 @@
 package sdm.space;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,58 +7,58 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestCollisions {
     @Test
-    public void projectileShuttleNotCollidedOnY() {
+    public void bombShuttleNotCollidedOnY() {
         int shuttleX = 100;
         int shuttleY = 125;
 
-        int projectileX = 100;
-        int projectileY = 100;
+        int bombX = 100;
+        int bombY = 100;
 
         Shuttle shuttle = new Shuttle(shuttleX, shuttleY);
-        Projectile projectile = new Projectile(projectileX, projectileY);
+        Bomb bomb = new Bomb(bombX, bombY);
 
-        assertFalse(CollisionChecker.check(projectile, shuttle));
+        assertFalse(CollisionChecker.check(bomb, shuttle));
     }
 
     @Test
-    public void projectileShuttleCollidedOnY() {
+    public void bombShuttleCollidedOnY() {
         int shuttleX = 100;
         int shuttleY = 123;
 
-        int projectileX = 100;
-        int projectileY = 100;
+        int bombX = 100;
+        int bombY = 100;
 
         Shuttle shuttle = new Shuttle(shuttleX, shuttleY);
-        Projectile projectile = new Projectile(projectileX, projectileY);
+        Bomb bomb = new Bomb(bombX, bombY);
 
-        assertTrue(CollisionChecker.check(projectile, shuttle));
+        assertTrue(CollisionChecker.check(bomb, shuttle));
     }
 
     @Test
-    public void projectileShuttleNotCollidedOnX() {
+    public void bombShuttleNotCollidedOnX() {
         int shuttleX = 125;
         int shuttleY = 100;
 
-        int projectileX = 100;
-        int projectileY = 100;
+        int bombX = 100;
+        int bombY = 100;
 
         Shuttle shuttle = new Shuttle(shuttleX, shuttleY);
-        Projectile projectile = new Projectile(projectileX, projectileY);
+        Bomb bomb = new Bomb(bombX, bombY);
 
-        assertFalse(CollisionChecker.check(projectile, shuttle));
+        assertFalse(CollisionChecker.check(bomb, shuttle));
     }
 
     @Test
-    public void projectileShuttleCollidedOnX() {
+    public void bombShuttleCollidedOnX() {
         int shuttleX = 123;
         int shuttleY = 100;
 
-        int projectileX = 100;
-        int projectileY = 100;
+        int bombX = 100;
+        int bombY = 100;
 
         Shuttle shuttle = new Shuttle(shuttleX, shuttleY);
-        Projectile projectile = new Projectile(projectileX, projectileY);
+        Bomb bomb = new Bomb(bombX, bombY);
 
-        assertTrue(CollisionChecker.check(projectile, shuttle));
+        assertTrue(CollisionChecker.check(bomb, shuttle));
     }
 }
