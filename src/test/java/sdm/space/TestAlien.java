@@ -84,6 +84,58 @@ public class TestAlien {
     }
 
     @Test
+    public void moveRightLimit(){
+        int x = 500;
+        int y = 10;
+
+        Alien alien = new Alien(x,y);
+        alien.moveRight();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(498, alien.getXPosition()),
+                () -> assertEquals(25, alien.getYPosition())
+        );
+    }
+
+    @Test
+    public void moveRightLimitMinusOne(){
+        int x = 499;
+        int y = 10;
+
+        Alien alien = new Alien(x,y);
+        alien.moveRight();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(500, alien.getXPosition()),
+                () -> assertEquals(10, alien.getYPosition())
+        );
+    }
+
+    @Test
+    public void moveLeftLimit(){
+        int x = 0;
+        int y = 10;
+
+        Alien alien = new Alien(x,y);
+        alien.moveLeft();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(2, alien.getXPosition()),
+                () -> assertEquals(25, alien.getYPosition())
+        );
+    }
+
+    @Test
+    public void moveLeftLimitPlusOne(){
+        int x = 1;
+        int y = 10;
+
+        Alien alien = new Alien(x,y);
+        alien.moveLeft();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(0, alien.getXPosition()),
+                () -> assertEquals(10, alien.getYPosition())
+        );
+    }
+
+    @Test
     public void checkIfAliveDefault(){
         Alien alien  = new Alien();
         assertTrue(alien.isAlive());
