@@ -98,6 +98,20 @@ public class TestAlien {
     }
 
     @Test
+    public void moveRightLimit() {
+        int x = 498;
+        int y = 10;
+
+        Alien alien = new Alien(x, y);
+        alien.move();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(500, alien.getXPosition()),
+                () -> assertEquals(25, alien.getYPosition()),
+                () -> assertFalse(alien.isMovingRight())
+        );
+    }
+
+    @Test
     public void checkIfAliveDefault(){
         Alien alien  = new Alien();
         assertTrue(alien.isAlive());
