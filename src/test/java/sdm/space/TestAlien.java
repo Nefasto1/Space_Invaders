@@ -84,6 +84,20 @@ public class TestAlien {
     }
 
     @Test
+    public void moveRightBeforeBoundary() {
+        int x = 496;
+        int y = 10;
+
+        Alien alien = new Alien(x, y);
+        alien.move();
+        assertAll("Check all the coordinates",
+                () -> assertEquals(498, alien.getXPosition()),
+                () -> assertEquals(10, alien.getYPosition()),
+                () -> assertTrue(alien.isMovingRight())
+        );
+    }
+
+    @Test
     public void checkIfAliveDefault(){
         Alien alien  = new Alien();
         assertTrue(alien.isAlive());
