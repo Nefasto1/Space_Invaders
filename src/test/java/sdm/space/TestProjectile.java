@@ -14,7 +14,7 @@ public class TestProjectile {
         projectile.move();
         assertAll("Check of all the coordinates",
                 () -> assertEquals(2, projectile.getXPosition()),
-                () -> assertEquals(10, projectile.getYPosition())
+                () -> assertEquals(0, projectile.getYPosition())
         );
     }
 
@@ -27,7 +27,7 @@ public class TestProjectile {
         projectile.move();
         assertAll("Check of all the coordinates",
                 () -> assertEquals(5, projectile.getXPosition()),
-                () -> assertEquals(12, projectile.getYPosition())
+                () -> assertEquals(2, projectile.getYPosition())
         );
     }
 
@@ -57,7 +57,7 @@ public class TestProjectile {
     @Test
     public void checkIsAliveAfterOutOfBounds() {
         int x = 5;
-        int y = 500;
+        int y = 0;
 
         Projectile projectile = new Projectile(x, y);
         projectile.move();
@@ -67,7 +67,7 @@ public class TestProjectile {
     @Test
     public void checkIsAliveAfterOutOfBoundsShifted() {
         int x = 5;
-        int y = 496;
+        int y = 4;
 
         Projectile projectile = new Projectile(x, y);
         projectile.move();

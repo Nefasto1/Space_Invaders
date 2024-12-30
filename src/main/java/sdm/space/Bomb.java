@@ -10,8 +10,8 @@ public class Bomb extends Entity {
     }
 
     public void move() {
-        y -= 5;
-        if (y < 0) {
+        y += 5;
+        if (y > 500) {
             super.die();
         }
     }
