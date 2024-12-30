@@ -44,4 +44,9 @@ public class Alien extends Entity {
         return movingRight;
     }
 
+    public void setMovingRight(boolean movingRight) {
+        this.movingRight = movingRight;
+    }
+
+
 }
