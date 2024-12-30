@@ -134,7 +134,7 @@ public class TestAlien {
         Alien alien = new Alien(x, y);
         alien.setMovingRight(false);
         alien.move();
-        assertAll("Check behavior when already at left boundary",
+        assertAll("Check all the coordinates",
                 () -> assertEquals(0, alien.getXPosition()),
                 () -> assertEquals(25, alien.getYPosition()),
                 () -> assertTrue(alien.isMovingRight())
