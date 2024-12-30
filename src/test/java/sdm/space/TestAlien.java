@@ -127,6 +127,21 @@ public class TestAlien {
     }
 
     @Test
+    public void moveLeftLimit() {
+        int x = 2;
+        int y = 10;
+
+        Alien alien = new Alien(x, y);
+        alien.setMovingRight(false);
+        alien.move();
+        assertAll("Check behavior when already at left boundary",
+                () -> assertEquals(0, alien.getXPosition()),
+                () -> assertEquals(25, alien.getYPosition()),
+                () -> assertTrue(alien.isMovingRight())
+        );
+    }
+
+    @Test
     public void checkIfAliveDefault(){
         Alien alien  = new Alien();
         assertTrue(alien.isAlive());
