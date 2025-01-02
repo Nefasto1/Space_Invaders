@@ -38,8 +38,9 @@ public class GameBoard extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         if (state.equals("Start"))
-            // To draw Start
-            System.out.println("Start");
+            drawStartMenu(g2d);
+
+        System.out.println("Start");
 
         if (state.equals("Game"))
             // To draw Game
@@ -50,5 +51,15 @@ public class GameBoard extends JPanel {
             System.out.println("End");
 
         repaint();
+    }
+
+    private void drawStartMenu(Graphics2D g2d) {
+        int width = getWidth();
+        int height = getHeight();
+
+        startMenu.draw(g2d, width, height);
+        if (startMenu.isStart()) {
+            state = "Game";
+        }
     }
 }
