@@ -14,7 +14,7 @@ public class TestBomb {
         bomb.move();
         assertAll("Check of all the coordinates",
                 () -> assertEquals(2, bomb.getXPosition()),
-                () -> assertEquals(10, bomb.getYPosition())
+                () -> assertEquals(7, bomb.getYPosition())
         );
     }
 
@@ -27,7 +27,7 @@ public class TestBomb {
         bomb.move();
         assertAll("Check of all the coordinates",
                 () -> assertEquals(5, bomb.getXPosition()),
-                () -> assertEquals(12, bomb.getYPosition())
+                () -> assertEquals(9, bomb.getYPosition())
         );
     }
 
@@ -67,7 +67,7 @@ public class TestBomb {
     @Test
     public void checkIsAliveAfterOutOfBoundsShifted() {
         int x = 5;
-        int y = 496;
+        int y = 499;
 
         Bomb bomb = new Bomb(x, y, 15, 15);
         bomb.move();
