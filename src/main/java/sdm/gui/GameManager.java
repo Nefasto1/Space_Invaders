@@ -33,10 +33,10 @@ public class GameManager implements ActionListener {
 
     private void moveAliens() {
         alienList.stream().filter(Alien::isAlive).forEach(Alien::move);
-        alienList.stream().filter(Alien::isAlive).forEach(alien -> shot(alien.getXPosition(), alien.getYPosition()));
+        alienList.stream().filter(Alien::isAlive).forEach(alien -> alienShot(alien.getXPosition(), alien.getYPosition()));
     }
 
-    private void shot(int x, int y){
+    private void alienShot(int x, int y){
         int curr_time = (int) System.currentTimeMillis();
         if (Math.random() < 0.05 && curr_time - lastshot > 300) {
             bombList.add(new Bomb(x + 16, y + 16, 15, 15, "bomb.png"));
