@@ -1,12 +1,18 @@
 package sdm.space;
 
-public class Bomb extends Entity {
-    public Bomb() {
-        super();
+import sdm.gui.Drawable;
+
+public class Bomb extends Drawable {
+    public Bomb(int x, int y, int width, int height) {
+        super(x, y, width, height);
     }
 
-    public Bomb(int x, int y) {
-        super(x, y);
+    public Bomb(int x, int y, int width, int height, String imageName) {
+        super(x, y, width, height, imageName);
+    }
+
+    public Bomb() {
+        super();
     }
 
     public void move() {
