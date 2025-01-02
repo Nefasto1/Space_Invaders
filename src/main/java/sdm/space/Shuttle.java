@@ -17,14 +17,14 @@ public class Shuttle extends Drawable {
     }
 
     public void moveRight() {
-        x += 2;
-        if (x>500){
-            x = 500;
+        x += 5;
+        if (x>445){
+            x = 445;
         }
     }
 
     public void moveLeft() {
-        x -= 2;
+        x -= 5;
         if (x<0){
             x = 0;
         }
