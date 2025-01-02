@@ -33,13 +33,13 @@ public class TestAlien {
 
     @Test
     public void moveLeftFromTwoAndFive(){
-        int x = 2;
+        int x = 4;
         int y = 5;
 
         Alien alien = new Alien(x,y);
         alien.moveLeft();
         assertAll("Check all the coordinates",
-                () -> assertEquals(0, alien.getXPosition()),
+                () -> assertEquals(2, alien.getXPosition()),
                 () -> assertEquals(5, alien.getYPosition())
         );
     }
@@ -84,54 +84,60 @@ public class TestAlien {
     }
 
     @Test
-    public void moveRightLimit(){
-        int x = 500;
+    public void moveRightBeforeBoundary() {
+        int x = 496;
         int y = 10;
 
-        Alien alien = new Alien(x,y);
-        alien.moveRight();
+        Alien alien = new Alien(x, y);
+        alien.move();
         assertAll("Check all the coordinates",
                 () -> assertEquals(498, alien.getXPosition()),
-                () -> assertEquals(25, alien.getYPosition())
+                () -> assertEquals(10, alien.getYPosition()),
+                () -> assertTrue(alien.isMovingRight())
         );
     }
 
     @Test
-    public void moveRightLimitMinusOne(){
-        int x = 499;
+    public void moveRightLimit() {
+        int x = 498;
         int y = 10;
 
-        Alien alien = new Alien(x,y);
-        alien.moveRight();
+        Alien alien = new Alien(x, y);
+        alien.move();
         assertAll("Check all the coordinates",
                 () -> assertEquals(500, alien.getXPosition()),
-                () -> assertEquals(10, alien.getYPosition())
+                () -> assertEquals(25, alien.getYPosition()),
+                () -> assertFalse(alien.isMovingRight())
         );
     }
 
     @Test
-    public void moveLeftLimit(){
-        int x = 0;
+    public void moveLeftBeforeBoundary() {
+        int x = 4;
         int y = 10;
 
-        Alien alien = new Alien(x,y);
-        alien.moveLeft();
+        Alien alien = new Alien(x, y);
+        alien.setMovingRight(false);
+        alien.move();
         assertAll("Check all the coordinates",
                 () -> assertEquals(2, alien.getXPosition()),
-                () -> assertEquals(25, alien.getYPosition())
+                () -> assertEquals(10, alien.getYPosition()),
+                () -> assertFalse(alien.isMovingRight())
         );
     }
 
     @Test
-    public void moveLeftLimitPlusOne(){
-        int x = 1;
+    public void moveLeftLimit() {
+        int x = 2;
         int y = 10;
 
-        Alien alien = new Alien(x,y);
-        alien.moveLeft();
+        Alien alien = new Alien(x, y);
+        alien.setMovingRight(false);
+        alien.move();
         assertAll("Check all the coordinates",
                 () -> assertEquals(0, alien.getXPosition()),
-                () -> assertEquals(10, alien.getYPosition())
+                () -> assertEquals(25, alien.getYPosition()),
+                () -> assertTrue(alien.isMovingRight())
         );
     }
 
