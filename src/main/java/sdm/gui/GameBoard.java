@@ -10,6 +10,7 @@ public class GameBoard extends JPanel {
     private EndMenu endMenu;
     private GameMenu gameMenu;
     private GameManager game;
+    private int lastshot;
 
     private String state = "Start";
 
@@ -99,8 +100,10 @@ public class GameBoard extends JPanel {
             else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
                 game.moveRightShuttle();
 
-            if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE) {
+            int current_time = (int) System.currentTimeMillis();
+            if (e.getKeyCode() == KeyEvent.VK_UP && current_time - lastshot > 300) {
                 game.shuttleShot();
+                lastshot = (int) System.currentTimeMillis();
             }
         }
     }
