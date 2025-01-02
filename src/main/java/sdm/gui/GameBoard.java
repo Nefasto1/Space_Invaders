@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class GameBoard extends JPanel {
     private StartMenu startMenu;
-    private EndMenu endMenu;
-    private GameMenu gameMenu;
+//    private EndMenu endMenu;
+//    private GameMenu gameMenu;
     private GameManager game;
 
     private String state = "Start";
@@ -23,6 +23,9 @@ public class GameBoard extends JPanel {
 
         setSize(width, height);
         this.setLayout(null);
+
+        startMenu = new StartMenu(this);
+        game = new GameManager();
     }
 
     @Override
