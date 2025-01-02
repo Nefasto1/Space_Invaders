@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class GameBoard extends JPanel {
     private StartMenu startMenu;
-//    private EndMenu endMenu;
+    private EndMenu endMenu;
 //    private GameMenu gameMenu;
     private GameManager game;
 
@@ -25,7 +25,9 @@ public class GameBoard extends JPanel {
         this.setLayout(null);
 
         startMenu = new StartMenu(this);
+        endMenu = new EndMenu(this);
         game = new GameManager();
+
     }
 
     @Override
@@ -50,8 +52,7 @@ public class GameBoard extends JPanel {
             System.out.println("Game");
 
         if (state.equals("End"))
-            // To draw End
-            System.out.println("End");
+            drawEndMenu(g2d);
 
         repaint();
     }
@@ -62,6 +63,18 @@ public class GameBoard extends JPanel {
 
         startMenu.draw(g2d, width, height);
         if (startMenu.isStart()) {
+            game.reset();
+            state = "Game";
+        }
+    }
+
+    private void drawEndMenu(Graphics2D g2d) {
+        int width = getWidth();
+        int height = getHeight();
+
+        endMenu.draw(g2d, width, height, game.getScore(), game.getResult());
+        if (endMenu.isRetry()) {
+            game.reset();
             state = "Game";
         }
     }
