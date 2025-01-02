@@ -1,8 +1,14 @@
 package sdm.space;
 
-public class Projectile extends Entity {
-    public Projectile(int x, int y) {
-        super(x, y);
+import sdm.gui.Drawable;
+
+public class Projectile extends Drawable {
+    public Projectile(int x, int y, int width, int height) {
+        super(x, y, width, height);
+    }
+
+    public Projectile(int x, int y, int width, int height, String imageName) {
+        super(x, y, width, height, imageName);
     }
 
     public Projectile() {
