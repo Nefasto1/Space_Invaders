@@ -85,13 +85,13 @@ public class TestAlien {
 
     @Test
     public void moveRightBeforeBoundary() {
-        int x = 496;
+        int x = 442;
         int y = 10;
 
         Alien alien = new Alien(x, y,45,45);
         alien.move();
         assertAll("Check all the coordinates",
-                () -> assertEquals(498, alien.getXPosition()),
+                () -> assertEquals(444, alien.getXPosition()),
                 () -> assertEquals(10, alien.getYPosition()),
                 () -> assertTrue(alien.isMovingRight())
         );
@@ -99,13 +99,13 @@ public class TestAlien {
 
     @Test
     public void moveRightLimit() {
-        int x = 498;
+        int x = 445;
         int y = 10;
 
         Alien alien = new Alien(x, y,45,45);
         alien.move();
         assertAll("Check all the coordinates",
-                () -> assertEquals(500, alien.getXPosition()),
+                () -> assertEquals(445, alien.getXPosition()),
                 () -> assertEquals(25, alien.getYPosition()),
                 () -> assertFalse(alien.isMovingRight())
         );

@@ -30,6 +30,7 @@ public class Alien extends Drawable {
     public void moveRight() {
         x += 2;
         if (x >= 445) {
+            x = 445;
             moveDown();
             movingRight = false;
         }
@@ -38,6 +39,7 @@ public class Alien extends Drawable {
     public void moveLeft() {
         x -= 2;
         if (x <= 0) {
+            x = 0;
             moveDown();
             movingRight = true;
         }
