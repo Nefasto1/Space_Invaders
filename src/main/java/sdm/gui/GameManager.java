@@ -32,6 +32,7 @@ public class GameManager implements ActionListener {
 
     private void moveAliens() {
         alienList.stream().filter(Alien::isAlive).forEach(Alien::move);
+//        alienList.stream().filter(Alien::isAlive).forEach(Alien::shoot);
     }
 
     private void moveBullets() {
