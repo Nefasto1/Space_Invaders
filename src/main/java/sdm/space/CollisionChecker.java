@@ -10,11 +10,6 @@ public class CollisionChecker {
 
         boolean collided = distance <= collisionDistance;
 
-        if (collided) {
-            first.die();
-            second.die();
-        }
-
         return collided;
     }
 

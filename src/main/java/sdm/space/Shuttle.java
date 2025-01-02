@@ -1,13 +1,19 @@
 package sdm.space;
 
-public class Shuttle extends Entity{
+import sdm.gui.Drawable;
 
-    public Shuttle(int x, int y) {
-        super(x, y);
+public class Shuttle extends Drawable {
+
+    public Shuttle(int x, int y, int width, int height) {
+        super(x, y, width, height);
     }
 
     public Shuttle() {
         super();
+    }
+
+    public Shuttle(int x, int y, int width, int height, String imageName) {
+        super(x, y, width, height, imageName);
     }
 
     public void moveRight() {
