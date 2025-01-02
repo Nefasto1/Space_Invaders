@@ -6,7 +6,9 @@ public class CollisionChecker {
         double distance_Y = Math.pow(first.getYPosition() - second.getYPosition(), 2);
         double distance = Math.sqrt(distance_X + distance_Y);
 
-        boolean collided = distance <= 23;
+        double collisionDistance = (double) (first.getWidth()/2 + second.getWidth()/2);
+
+        boolean collided = distance <= collisionDistance;
 
         if (collided) {
             first.die();
