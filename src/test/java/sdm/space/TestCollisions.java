@@ -142,12 +142,12 @@ public class TestCollisions {
         int projectileX = 100;
         int projectileY = 100;
 
-        Alien alien = new Alien(alienX, alienY);
+        Alien alien = new Alien(alienX, alienY, 45, 45);
         Projectile projectile = new Projectile(projectileX, projectileY, 15,15);
 
         assertFalse(CollisionChecker.check(projectile, alien));
     }
-    @Disabled
+
     @Test
     public void projectileAlienCollidedOnY() {
         int alienX = 100;
@@ -156,12 +156,12 @@ public class TestCollisions {
         int projectileX = 100;
         int projectileY = 100;
 
-        Alien alien = new Alien(alienX, alienY);
+        Alien alien = new Alien(alienX, alienY, 45,45);
         Projectile projectile = new Projectile(projectileX, projectileY, 15,15);
 
         assertTrue(CollisionChecker.check(projectile, alien));
     }
-    @Disabled
+
     @Test
     public void projectileAlienNotCollidedOnX() {
         int alienX = 130;
@@ -170,12 +170,12 @@ public class TestCollisions {
         int projectileX = 100;
         int projectileY = 100;
 
-        Alien alien = new Alien(alienX, alienY);
+        Alien alien = new Alien(alienX, alienY, 45,45);
         Projectile projectile = new Projectile(projectileX, projectileY, 15,15);
 
         assertFalse(CollisionChecker.check(projectile, alien));
     }
-    @Disabled
+
     @Test
     public void projectileAlienCollidedOnX() {
         int alienX = 129;
@@ -184,12 +184,12 @@ public class TestCollisions {
         int projectileX = 100;
         int projectileY = 100;
 
-        Alien alien = new Alien(alienX, alienY);
+        Alien alien = new Alien(alienX, alienY, 45,45);
         Projectile projectile = new Projectile(projectileX, projectileY, 15,15);
 
         assertTrue(CollisionChecker.check(projectile, alien));
     }
-    @Disabled
+
     @Test
     public void projectileAlienNotCollidedOnYCheckBothAlive() {
         int alienX = 100;
@@ -198,7 +198,7 @@ public class TestCollisions {
         int projectileX = 100;
         int projectileY = 100;
 
-        Alien alien = new Alien(alienX, alienY);
+        Alien alien = new Alien(alienX, alienY, 45,45);
         Projectile projectile = new Projectile(projectileX, projectileY, 15,15);
         CollisionChecker.checkAndDestroy(projectile, alien);
 
@@ -206,7 +206,7 @@ public class TestCollisions {
                 () -> assertTrue(projectile.isAlive()),
                 () -> assertTrue(alien.isAlive()));
     }
-    @Disabled
+
     @Test
     public void projectileAlienCollidedOnYBothDead() {
         int alienX = 100;
@@ -215,7 +215,7 @@ public class TestCollisions {
         int projectileX = 100;
         int projectileY = 100;
 
-        Alien alien = new Alien(alienX, alienY);
+        Alien alien = new Alien(alienX, alienY, 45,45);
         Projectile projectile = new Projectile(projectileX, projectileY, 15,15);
 
         CollisionChecker.checkAndDestroy(projectile, alien);
@@ -224,7 +224,7 @@ public class TestCollisions {
                 () -> assertFalse(projectile.isAlive()),
                 () -> assertFalse(alien.isAlive()));
     }
-    @Disabled
+
     @Test
     public void projectileAlienNotCollidedOnXBothAlive() {
         int alienX = 130;
@@ -233,7 +233,7 @@ public class TestCollisions {
         int projectileX = 100;
         int projectileY = 100;
 
-        Alien alien = new Alien(alienX, alienY);
+        Alien alien = new Alien(alienX, alienY, 45,45);
         Projectile projectile = new Projectile(projectileX, projectileY, 15,15);
 
         CollisionChecker.checkAndDestroy(projectile, alien);
@@ -242,7 +242,7 @@ public class TestCollisions {
                 () -> assertTrue(projectile.isAlive()),
                 () -> assertTrue(alien.isAlive()));
     }
-    @Disabled
+
     @Test
     public void projectileAlienCollidedOnXBothDead() {
         int alienX = 129;
@@ -251,7 +251,7 @@ public class TestCollisions {
         int projectileX = 100;
         int projectileY = 100;
 
-        Alien alien = new Alien(alienX, alienY);
+        Alien alien = new Alien(alienX, alienY, 45,45);
         Projectile projectile = new Projectile(projectileX, projectileY, 15,15);
 
         CollisionChecker.checkAndDestroy(projectile, alien);

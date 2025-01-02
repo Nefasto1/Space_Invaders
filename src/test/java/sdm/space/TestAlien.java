@@ -10,7 +10,7 @@ public class TestAlien {
         int x = 2;
         int y = 5;
 
-        Alien alien = new Alien(x,y);
+        Alien alien = new Alien(x,y,45,45);
         alien.moveRight();
         assertAll("Check all the coordinates",
                 () -> assertEquals(4, alien.getXPosition()),
@@ -23,7 +23,7 @@ public class TestAlien {
         int x = 8;
         int y = 10;
 
-        Alien alien = new Alien(x,y);
+        Alien alien = new Alien(x,y,45,45);
         alien.moveRight();
         assertAll("Check all the coordinates",
                 () -> assertEquals(10, alien.getXPosition()),
@@ -36,7 +36,7 @@ public class TestAlien {
         int x = 4;
         int y = 5;
 
-        Alien alien = new Alien(x,y);
+        Alien alien = new Alien(x,y,45,45);
         alien.moveLeft();
         assertAll("Check all the coordinates",
                 () -> assertEquals(2, alien.getXPosition()),
@@ -49,7 +49,7 @@ public class TestAlien {
         int x = 8;
         int y = 10;
 
-        Alien alien = new Alien(x,y);
+        Alien alien = new Alien(x,y,45,45);
         alien.moveLeft();
         assertAll("Check all the coordinates",
                 () -> assertEquals(6, alien.getXPosition()),
@@ -62,7 +62,7 @@ public class TestAlien {
         int x = 2;
         int y = 5;
 
-        Alien alien = new Alien(x,y);
+        Alien alien = new Alien(x,y,45,45);
         alien.moveDown();
         assertAll("Check all the coordinates",
                 () -> assertEquals(2, alien.getXPosition()),
@@ -75,7 +75,7 @@ public class TestAlien {
         int x = 5;
         int y = 10;
 
-        Alien alien = new Alien(x,y);
+        Alien alien = new Alien(x,y,45,45);
         alien.moveDown();
         assertAll("Check all the coordinates",
                 () -> assertEquals(5, alien.getXPosition()),
@@ -88,7 +88,7 @@ public class TestAlien {
         int x = 496;
         int y = 10;
 
-        Alien alien = new Alien(x, y);
+        Alien alien = new Alien(x, y,45,45);
         alien.move();
         assertAll("Check all the coordinates",
                 () -> assertEquals(498, alien.getXPosition()),
@@ -102,7 +102,7 @@ public class TestAlien {
         int x = 498;
         int y = 10;
 
-        Alien alien = new Alien(x, y);
+        Alien alien = new Alien(x, y,45,45);
         alien.move();
         assertAll("Check all the coordinates",
                 () -> assertEquals(500, alien.getXPosition()),
@@ -116,7 +116,7 @@ public class TestAlien {
         int x = 4;
         int y = 10;
 
-        Alien alien = new Alien(x, y);
+        Alien alien = new Alien(x, y,45,45);
         alien.setMovingRight(false);
         alien.move();
         assertAll("Check all the coordinates",
@@ -131,7 +131,7 @@ public class TestAlien {
         int x = 2;
         int y = 10;
 
-        Alien alien = new Alien(x, y);
+        Alien alien = new Alien(x, y,45,45);
         alien.setMovingRight(false);
         alien.move();
         assertAll("Check all the coordinates",

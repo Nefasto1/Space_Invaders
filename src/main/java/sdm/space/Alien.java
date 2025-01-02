@@ -1,16 +1,23 @@
 package sdm.space;
 
-public class Alien extends Entity {
+import sdm.gui.Drawable;
+
+public class Alien extends Drawable {
 
     private boolean movingRight = true;
 
-    public Alien(int x, int y) {
-        super(x, y);
+    public Alien(int x, int y, int width, int height) {
+        super(x, y, width, height);
     }
 
     public Alien() {
         super();
     }
+
+    public Alien(int x, int y, int width, int height, String imageName) {
+        super(x, y, width, height, imageName);
+    }
+
 
     public void move() {
         if (movingRight) {
