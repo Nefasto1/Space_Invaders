@@ -10,7 +10,7 @@ public class TestBomb {
         int x = 2;
         int y = 5;
 
-        Bomb bomb = new Bomb(x, y);
+        Bomb bomb = new Bomb(x, y, 15, 15);
         bomb.move();
         assertAll("Check of all the coordinates",
                 () -> assertEquals(2, bomb.getXPosition()),
@@ -23,7 +23,7 @@ public class TestBomb {
         int x = 5;
         int y = 7;
 
-        Bomb bomb = new Bomb(x, y);
+        Bomb bomb = new Bomb(x, y, 15, 15);
         bomb.move();
         assertAll("Check of all the coordinates",
                 () -> assertEquals(5, bomb.getXPosition()),
@@ -49,7 +49,7 @@ public class TestBomb {
         int x = 5;
         int y = 400;
 
-        Bomb bomb = new Bomb(x, y);
+        Bomb bomb = new Bomb(x, y, 15, 15);
         bomb.move();
         assertTrue(bomb.isAlive());
     }
@@ -59,7 +59,7 @@ public class TestBomb {
         int x = 5;
         int y = 500;
 
-        Bomb bomb = new Bomb(x, y);
+        Bomb bomb = new Bomb(x, y, 15, 15);
         bomb.move();
         assertFalse(bomb.isAlive());
     }
@@ -69,7 +69,7 @@ public class TestBomb {
         int x = 5;
         int y = 496;
 
-        Bomb bomb = new Bomb(x, y);
+        Bomb bomb = new Bomb(x, y, 15, 15);
         bomb.move();
         assertFalse(bomb.isAlive());
     }

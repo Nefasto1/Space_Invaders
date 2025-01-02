@@ -10,7 +10,7 @@ public class TestProjectile {
         int x = 2;
         int y = 5;
 
-        Projectile projectile = new Projectile(x, y);
+        Projectile projectile = new Projectile(x, y, 15, 15);
         projectile.move();
         assertAll("Check of all the coordinates",
                 () -> assertEquals(2, projectile.getXPosition()),
@@ -23,7 +23,7 @@ public class TestProjectile {
         int x = 5;
         int y = 7;
 
-        Projectile projectile = new Projectile(x, y);
+        Projectile projectile = new Projectile(x, y, 15, 15);
         projectile.move();
         assertAll("Check of all the coordinates",
                 () -> assertEquals(5, projectile.getXPosition()),
@@ -49,7 +49,7 @@ public class TestProjectile {
         int x = 5;
         int y = 400;
 
-        Projectile projectile = new Projectile(x, y);
+        Projectile projectile = new Projectile(x, y, 15, 15);
         projectile.move();
         assertTrue(projectile.isAlive());
     }
@@ -59,7 +59,7 @@ public class TestProjectile {
         int x = 5;
         int y = 0;
 
-        Projectile projectile = new Projectile(x, y);
+        Projectile projectile = new Projectile(x, y, 15, 15);
         projectile.move();
         assertFalse(projectile.isAlive());
     }
@@ -69,7 +69,7 @@ public class TestProjectile {
         int x = 5;
         int y = 4;
 
-        Projectile projectile = new Projectile(x, y);
+        Projectile projectile = new Projectile(x, y, 15, 15);
         projectile.move();
         assertFalse(projectile.isAlive());
     }
