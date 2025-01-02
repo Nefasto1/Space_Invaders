@@ -16,7 +16,7 @@ public class Bomb extends Drawable {
     }
 
     public void move() {
-        y += 5;
+        y += 2;
         if (y > 500) {
             super.die();
         }

@@ -38,7 +38,9 @@ public class GameManager implements ActionListener {
 
     private void alienShot(int x, int y){
         int curr_time = (int) System.currentTimeMillis();
-        if (Math.random() < 0.05 && curr_time - lastshot > 300) {
+        double num_alien = (double) alienList.stream().filter(Alien::isAlive).count();
+        double probability = 1/(num_alien*50);
+        if (Math.random() < probability && curr_time - lastshot > 300) {
             bombList.add(new Bomb(x + 16, y + 16, 15, 15, "bomb.png"));
             lastshot = (int) System.currentTimeMillis();
         }
