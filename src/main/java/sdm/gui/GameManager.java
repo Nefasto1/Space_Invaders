@@ -57,7 +57,7 @@ public class GameManager implements ActionListener {
     }
 
     private boolean checkLoss() {
-        return !shuttle.isAlive();
+        return !shuttle.isAlive() || alienList.stream().anyMatch(alien -> alien.getYPosition() >= 350);
     }
 
     public Shuttle getShuttle() {
