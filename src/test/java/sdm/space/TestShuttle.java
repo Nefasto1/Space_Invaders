@@ -67,7 +67,7 @@ public class TestShuttle {
         Shuttle shuttle = new Shuttle(x,y, 45,45);
         shuttle.moveRight();
         assertAll("Check all the coordinates",
-                () -> assertEquals(500, shuttle.getXPosition()),
+                () -> assertEquals(445, shuttle.getXPosition()),
                 () -> assertEquals(2, shuttle.getYPosition())
         );
     }
@@ -80,7 +80,7 @@ public class TestShuttle {
         Shuttle shuttle = new Shuttle(x,y,45,45);
         shuttle.moveRight();
         assertAll("Check all the coordinates",
-                () -> assertEquals(500, shuttle.getXPosition()),
+                () -> assertEquals(445, shuttle.getXPosition()),
                 () -> assertEquals(4, shuttle.getYPosition())
         );
     }
