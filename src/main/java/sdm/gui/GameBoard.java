@@ -101,7 +101,7 @@ public class GameBoard extends JPanel {
                 game.moveRightShuttle();
 
             int current_time = (int) System.currentTimeMillis();
-            if (e.getKeyCode() == KeyEvent.VK_UP && current_time - lastshot > 300) {
+            if (e.getKeyCode() == KeyEvent.VK_UP && current_time - lastshot > 500) {
                 game.shuttleShot();
                 lastshot = (int) System.currentTimeMillis();
             }
