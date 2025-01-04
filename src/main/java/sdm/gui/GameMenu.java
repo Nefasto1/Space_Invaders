@@ -45,7 +45,7 @@ public class GameMenu {
 
         g2d.setColor(Color.white);
         g2d.setFont(small);
-        g2d.drawString("Lives: " + lives, 10, height - 50);
+        g2d.drawString("Lives: " + lives, (width - fontMetrics.stringWidth("Lives: " + lives)) - 10, height - 70);
     }
 
 
