@@ -15,6 +15,7 @@ public class GameManager implements ActionListener {
     private ArrayList<Bomb> bombList;
     private int score = 0;
     private int lastshot;
+    private int lives = 3;
 
     public GameManager() {
         timer = new Timer(10, this);
@@ -27,9 +28,10 @@ public class GameManager implements ActionListener {
         bulletList = new ArrayList<>();
         bombList = new ArrayList<>();
         alienList = AlienFactory.generate(2);
-
+        lives = 3;
         timer.restart();
     }
+
 
     private void moveAliens() {
         alienList.stream().filter(Alien::isAlive).forEach(Alien::move);
@@ -52,10 +54,18 @@ public class GameManager implements ActionListener {
                 alienList.stream().filter(Alien::isAlive).forEach(alien -> CollisionChecker.checkAndDestroy(bullet, alien)));
     }
 
-    private void moveBombs(){
+    private void moveBombs() {
         bombList.stream().filter(Bomb::isAlive).forEach(Bomb::move);
-        bombList.stream().filter(Bomb::isAlive).forEach(bomb -> CollisionChecker.checkAndDestroy(bomb, shuttle));
+        bombList.stream().filter(Bomb::isAlive).forEach(bomb -> {
+            if (CollisionChecker.checkAndDestroy(bomb, shuttle)) {
+                lives--;
+                if (lives <= 0) {
+                    shuttle.die();
+                }
+            }
+        });
     }
+
 
     private void updateScore() {
         score = (int) alienList.stream().filter(alien -> !alien.isAlive()).count() * 100;
@@ -68,7 +78,7 @@ public class GameManager implements ActionListener {
     }
 
     private boolean checkLoss() {
-        return !shuttle.isAlive() || alienList.stream().anyMatch(alien -> alien.getYPosition() >= 350);
+        return lives <= 0 || alienList.stream().anyMatch(alien -> alien.getYPosition() >= 350);
     }
 
     public Shuttle getShuttle() {
@@ -98,6 +108,8 @@ public class GameManager implements ActionListener {
     public String getResult() {
         return checkVictory() ? "Victory" : "Game Over";
     }
+
+    public int getLives() { return lives; }
 
     public void moveLeftShuttle() {
         shuttle.moveLeft();

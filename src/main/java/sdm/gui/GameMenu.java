@@ -17,6 +17,7 @@ public class GameMenu {
     public void draw(Graphics2D g2d, int width, int height, GameManager game) {
         drawBackground(g2d, width, height);
         drawScore(g2d, width, height, game.getScore());
+        drawLives(g2d, width, height, game.getLives());
 
         drawShuttle(g2d, panel, game);
         drawAliens(g2d, panel, game);
@@ -36,6 +37,15 @@ public class GameMenu {
         g2d.setColor(Color.white);
         g2d.setFont(small);
         g2d.drawString("Score: " + score, (width - fontMetrics.stringWidth("Score: " + score)) - 10,height - 50);
+    }
+
+    private void drawLives(Graphics2D g2d, int width, int height, int lives) {
+        var small = new Font("Helvetica", Font.BOLD, 14);
+        var fontMetrics = g2d.getFontMetrics(small);
+
+        g2d.setColor(Color.white);
+        g2d.setFont(small);
+        g2d.drawString("Lives: " + lives, 10, height - 50);
     }
 
 
