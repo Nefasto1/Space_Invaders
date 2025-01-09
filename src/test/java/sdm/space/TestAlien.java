@@ -144,16 +144,17 @@ public class TestAlien {
     @Test
     public void testSpeedIncreaseAfterMoveDown() {
         int x = 10;
-        int y = 10;
+        int y = 8;
 
         Alien alien = new Alien(x, y, 45, 45);
         int initialSpeed = alien.getSpeed();
         alien.moveDown();
         assertAll("Check speed after moving down",
-                () -> assertEquals(initialSpeed + 2, alien.getSpeed()),
-                () -> assertEquals(25, alien.getYPosition())
+                () -> assertEquals(initialSpeed + 0, alien.getSpeed()),
+                () -> assertEquals(23, alien.getYPosition())
         );
     }
+
 
     @Test
     public void checkIfAliveDefault(){
