@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class GameManager implements ActionListener {
     private final Timer timer;
     protected Shuttle shuttle;
+    protected AlienSpeedy alienSpeedy;
     protected ArrayList<Alien> alienList;
     protected ArrayList<Projectile> bulletList;
     protected ArrayList<Bomb> bombList;
@@ -18,7 +19,7 @@ public class GameManager implements ActionListener {
     private int score;
     private int speedyKilled;
     private int lastShot;
-    private int lives=3;
+    private int lives;
 
     public GameManager() {
         timer = new Timer(10, this);
@@ -31,9 +32,11 @@ public class GameManager implements ActionListener {
         bulletList = new ArrayList<>();
         bombList = new ArrayList<>();
         alienList = AlienFactory.generate(2);
+        alienSpeedy = null;
 
         score = 0;
         speedyKilled = 0;
+        lives = 3;
 
         lastShot = (int) System.currentTimeMillis();
 
@@ -63,6 +66,11 @@ public class GameManager implements ActionListener {
     private void bulletAlienCollisionCheck() {
         bulletList.stream().filter(Projectile::isAlive).forEach(bullet ->
                 alienList.stream().filter(Alien::isAlive).forEach(alien -> CollisionChecker.checkAndDestroy(bullet, alien)));
+    }
+
+    private void bulletSpeedyCollisionCheck() {
+        if (alienSpeedy != null)
+            bulletList.stream().filter(Projectile::isAlive).forEach(bullet -> CollisionChecker.checkAndDestroy(bullet, alienSpeedy));
     }
 
     private void moveBombs() {
@@ -111,9 +119,33 @@ public class GameManager implements ActionListener {
         bombList.stream().filter(Bomb::isAlive).forEach(bomb -> bomb.draw(g2d, panel));
     }
 
+    private void drawSpeedy(Graphics2D g2d, JPanel panel) {
+        if (alienSpeedy != null)
+            alienSpeedy.draw(g2d, panel);
+    }
+
+    private void generateSpeedy() {
+        if (Math.random() < 0.005 && alienSpeedy == null)
+            alienSpeedy = new AlienSpeedy(30,30,"alienSpeedy.png");
+    }
+
+    private void killSpeedyIfDead(){
+        if (alienSpeedy != null) {
+            speedyKilled += !alienSpeedy.isAlive() && !alienSpeedy.isEscaped() ?1:0;
+            alienSpeedy = alienSpeedy.isAlive() ? alienSpeedy : null;
+        }
+    }
+
+    private void moveSpeedy(){
+        if (alienSpeedy != null)
+            alienSpeedy.move();
+    }
+
     private void CollisionChecker() {
         bulletAlienCollisionCheck();
         bombShuttleCollisionCheck();
+        bulletSpeedyCollisionCheck();
+        killSpeedyIfDead();
     }
 
     private void moveEntities() {
@@ -121,11 +153,13 @@ public class GameManager implements ActionListener {
         moveAliens();
         moveBullets();
         moveBombs();
+        moveSpeedy();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (!isEnded()){
+            generateSpeedy();
             moveEntities();
             CollisionChecker();
             updateScore();
@@ -138,6 +172,7 @@ public class GameManager implements ActionListener {
         drawAliens(g2d, panel);
         drawBullets(g2d, panel);
         drawBombs(g2d, panel);
+        drawSpeedy(g2d, panel);
     }
 
     public int getScore() {

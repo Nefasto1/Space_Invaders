@@ -16,6 +16,11 @@ public class AlienSpeedy extends Drawable {
         initSpeedy();
     }
 
+    public AlienSpeedy(int width, int height, String imageName) {
+        super(0, 10, width, height, imageName);
+        initSpeedy();
+    }
+
     public AlienSpeedy(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
