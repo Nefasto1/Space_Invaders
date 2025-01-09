@@ -4,6 +4,10 @@ import sdm.gui.Drawable;
 
 public class Alien extends Drawable {
 
+    private int speed = 2;
+
+    private int moveDownCounter = 0;
+
     private boolean movingRight = true;
 
     public Alien(int x, int y, int width, int height) {
@@ -28,7 +32,7 @@ public class Alien extends Drawable {
     }
 
     public void moveRight() {
-        x += 2;
+        x += speed;
         if (x >= 445) {
             x = 445;
             moveDown();
@@ -37,7 +41,7 @@ public class Alien extends Drawable {
     }
 
     public void moveLeft() {
-        x -= 2;
+        x -= speed;
         if (x <= 0) {
             x = 0;
             moveDown();
@@ -47,6 +51,18 @@ public class Alien extends Drawable {
 
     public void moveDown() {
         y += 15;
+        moveDownCounter++;
+        if (moveDownCounter % 5 == 0) {
+            increaseSpeed();
+        }
+    }
+
+    public void increaseSpeed() {
+        speed += 1;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 
     public boolean isMovingRight() {
