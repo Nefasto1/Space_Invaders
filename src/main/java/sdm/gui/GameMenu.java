@@ -6,6 +6,7 @@ import sdm.space.Projectile;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Line2D;
 
 public class GameMenu {
     JPanel panel;
@@ -19,15 +20,15 @@ public class GameMenu {
         drawScore(g2d, width, height, game.getScore());
         drawLives(g2d, width, height, game.getLives());
 
-        drawShuttle(g2d, panel, game);
-        drawAliens(g2d, panel, game);
-        drawBullets(g2d, panel, game);
-        drawBombs(g2d, panel, game);
+        game.draw(g2d, panel);
     }
 
     private void drawBackground(Graphics2D g2d, int width, int height) {
         g2d.setColor(Color.black);
         g2d.fillRect(0, 0, width, height);
+        Line2D line = new Line2D.Double(0, 350, 500, 350);
+        g2d.setColor(Color.WHITE);
+        g2d.draw(line);
     }
 
     private void drawScore(Graphics2D g2d, int width, int height, int score) {
@@ -46,22 +47,5 @@ public class GameMenu {
         g2d.setColor(Color.white);
         g2d.setFont(small);
         g2d.drawString("Lives: " + lives, (width - fontMetrics.stringWidth("Lives: " + lives)) - 10, height - 70);
-    }
-
-
-    public void drawShuttle(Graphics2D g2d, JPanel panel, GameManager game) {
-        game.getShuttle().draw(g2d, panel);
-    }
-
-    public void drawAliens(Graphics2D g2d, JPanel panel, GameManager game) {
-        game.getAliens().stream().filter(Alien::isAlive).forEach(alien -> alien.draw(g2d, panel));
-    }
-
-    public void drawBullets(Graphics2D g2d, JPanel panel, GameManager game) {
-        game.getBullets().stream().filter(Projectile::isAlive).forEach(bullet -> bullet.draw(g2d, panel));
-    }
-
-    public void drawBombs(Graphics2D g2d, JPanel panel, GameManager game) {
-        game.getBombs().stream().filter(Bomb::isAlive).forEach(bomb -> bomb.draw(g2d, panel));
     }
 }

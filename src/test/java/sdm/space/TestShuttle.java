@@ -12,8 +12,9 @@ public class TestShuttle {
 
         Shuttle shuttle = new Shuttle(x, y, 45,45);
         shuttle.moveRight();
+        shuttle.move();
         assertAll("Check all the coordinates",
-                () -> assertEquals(7, shuttle.getXPosition()),
+                () -> assertEquals(5, shuttle.getXPosition()),
                 () -> assertEquals(2, shuttle.getYPosition())
         );
     }
@@ -25,8 +26,9 @@ public class TestShuttle {
 
         Shuttle shuttle = new Shuttle(x, y, 45,45);
         shuttle.moveRight();
+        shuttle.move();
         assertAll("Check all the coordinates",
-                () -> assertEquals(25, shuttle.getXPosition()),
+                () -> assertEquals(23, shuttle.getXPosition()),
                 () -> assertEquals(8, shuttle.getYPosition())
         );
     }
@@ -38,7 +40,7 @@ public class TestShuttle {
 
         Shuttle shuttle = new Shuttle(x, y, 45,45);
         shuttle.moveLeft();
-
+        shuttle.move();
         assertAll("Check all the coordinates",
                 () -> assertEquals(0, shuttle.getXPosition()),
                 () -> assertEquals(2, shuttle.getYPosition())
@@ -52,9 +54,9 @@ public class TestShuttle {
 
         Shuttle shuttle = new Shuttle(x, y,45,45);
         shuttle.moveLeft();
-
+        shuttle.move();
         assertAll("Check all the coordinates",
-                () -> assertEquals(15, shuttle.getXPosition()),
+                () -> assertEquals(17, shuttle.getXPosition()),
                 () -> assertEquals(8, shuttle.getYPosition())
         );
     }
@@ -62,10 +64,11 @@ public class TestShuttle {
     @Test
     public void moveRightLimit(){
         // here I will assume that the screen is 500x500
-        int x = 500;
+        int x = 443;
         int y = 2;
         Shuttle shuttle = new Shuttle(x,y, 45,45);
         shuttle.moveRight();
+        shuttle.move();
         assertAll("Check all the coordinates",
                 () -> assertEquals(445, shuttle.getXPosition()),
                 () -> assertEquals(2, shuttle.getYPosition())
@@ -75,10 +78,11 @@ public class TestShuttle {
     @Test
     public void moveRightLimitMinusOne(){
         // here I will assume that the screen is 500x500
-        int x = 499;
+        int x = 444;
         int y = 4;
         Shuttle shuttle = new Shuttle(x,y,45,45);
         shuttle.moveRight();
+        shuttle.move();
         assertAll("Check all the coordinates",
                 () -> assertEquals(445, shuttle.getXPosition()),
                 () -> assertEquals(4, shuttle.getYPosition())
@@ -92,6 +96,7 @@ public class TestShuttle {
         int y = 2;
         Shuttle shuttle = new Shuttle(x,y, 45,45);
         shuttle.moveLeft();
+        shuttle.move();
         assertAll("Check all the coordinates",
                 () -> assertEquals(0, shuttle.getXPosition()),
                 () -> assertEquals(2, shuttle.getYPosition())
@@ -105,6 +110,7 @@ public class TestShuttle {
         int y = 4;
         Shuttle shuttle = new Shuttle(x,y, 45,45);
         shuttle.moveLeft();
+        shuttle.move();
         assertAll("Check all the coordinates",
                 () -> assertEquals(0, shuttle.getXPosition()),
                 () -> assertEquals(4, shuttle.getYPosition())

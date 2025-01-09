@@ -3,19 +3,22 @@ package sdm.gui;
 import sdm.space.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class GameManager implements ActionListener {
-    private Timer timer;
-    private Shuttle shuttle;
-    private ArrayList<Alien> alienList;
-    private ArrayList<Projectile> bulletList;
-    private ArrayList<Bomb> bombList;
-    private int score = 0;
-    private int lastshot;
-    private int lives = 3;
+    private final Timer timer;
+    protected Shuttle shuttle;
+    protected ArrayList<Alien> alienList;
+    protected ArrayList<Projectile> bulletList;
+    protected ArrayList<Bomb> bombList;
+
+    private int score;
+    private int speedyKilled;
+    private int lastShot;
+    private int lives=3;
 
     public GameManager() {
         timer = new Timer(10, this);
@@ -28,49 +31,60 @@ public class GameManager implements ActionListener {
         bulletList = new ArrayList<>();
         bombList = new ArrayList<>();
         alienList = AlienFactory.generate(2);
-        lives = 3;
+
+        score = 0;
+        speedyKilled = 0;
+
+        lastShot = (int) System.currentTimeMillis();
+
         timer.restart();
     }
-
 
     private void moveAliens() {
         alienList.stream().filter(Alien::isAlive).forEach(Alien::move);
         alienList.stream().filter(Alien::isAlive).forEach(alien -> alienShot(alien.getXPosition(), alien.getYPosition()));
     }
 
-    private void alienShot(int x, int y){
+    private void alienShot(int x, int y) {
         int curr_time = (int) System.currentTimeMillis();
         double num_alien = (double) alienList.stream().filter(Alien::isAlive).count();
-        double probability = 1/(num_alien*50);
-        if (Math.random() < probability && curr_time - lastshot > 300) {
+        double probability = 1 / (num_alien * 50);
+
+        if (Math.random() < probability && curr_time - lastShot > 300) {
             bombList.add(new Bomb(x + 16, y + 16, 15, 15, "bomb.png"));
-            lastshot = (int) System.currentTimeMillis();
+            lastShot = (int) System.currentTimeMillis();
         }
     }
 
     private void moveBullets() {
         bulletList.stream().filter(Projectile::isAlive).forEach(Projectile::move);
+    }
+
+    private void bulletAlienCollisionCheck() {
         bulletList.stream().filter(Projectile::isAlive).forEach(bullet ->
                 alienList.stream().filter(Alien::isAlive).forEach(alien -> CollisionChecker.checkAndDestroy(bullet, alien)));
     }
 
     private void moveBombs() {
         bombList.stream().filter(Bomb::isAlive).forEach(Bomb::move);
+    }
+
+    private void bombShuttleCollisionCheck() {
         bombList.stream().filter(Bomb::isAlive).forEach(bomb -> {
-            if (CollisionChecker.checkAndDestroy(bomb, shuttle)) {
+            if (CollisionChecker.check(bomb, shuttle)){
                 lives--;
-                if (lives <= 0) {
-                    shuttle.die();
-                }
+                bomb.die();
             }
+            if (lives == 0)
+                shuttle.die();
         });
     }
 
-
     private void updateScore() {
         score = (int) alienList.stream().filter(alien -> !alien.isAlive()).count() * 100;
-        score += checkVictory() ?  1000 : 0;
-        score -= checkLoss() ?  500 : 0;
+        score += speedyKilled * 200;
+        score += checkVictory() ? 1000 : 0;
+        score -= checkLoss() ? 500 : 0;
     }
 
     private boolean checkVictory() {
@@ -78,23 +92,52 @@ public class GameManager implements ActionListener {
     }
 
     private boolean checkLoss() {
-        return lives <= 0 || alienList.stream().anyMatch(alien -> alien.getYPosition() >= 350);
+        return !shuttle.isAlive() || alienList.stream().anyMatch(alien -> alien.getYPosition() >= 350);
     }
 
-    public Shuttle getShuttle() {
-        return shuttle;
+    private void drawShuttle(Graphics2D g2d, JPanel panel) {
+        shuttle.draw(g2d, panel);
     }
 
-    public ArrayList<Alien> getAliens() {
-        return alienList;
+    private void drawAliens(Graphics2D g2d, JPanel panel) {
+        alienList.stream().filter(Alien::isAlive).forEach(alien -> alien.draw(g2d, panel));
     }
 
-    public ArrayList<Projectile> getBullets() {
-        return bulletList;
+    private void drawBullets(Graphics2D g2d, JPanel panel) {
+        bulletList.stream().filter(Projectile::isAlive).forEach(bullet -> bullet.draw(g2d, panel));
     }
 
-    public ArrayList<Bomb> getBombs() {
-        return bombList;
+    private void drawBombs(Graphics2D g2d, JPanel panel) {
+        bombList.stream().filter(Bomb::isAlive).forEach(bomb -> bomb.draw(g2d, panel));
+    }
+
+    private void CollisionChecker() {
+        bulletAlienCollisionCheck();
+        bombShuttleCollisionCheck();
+    }
+
+    private void moveEntities() {
+        shuttle.move();
+        moveAliens();
+        moveBullets();
+        moveBombs();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (!isEnded()){
+            moveEntities();
+            CollisionChecker();
+            updateScore();
+
+        }
+    }
+
+    public void draw(Graphics2D g2d, JPanel panel){
+        drawShuttle(g2d, panel);
+        drawAliens(g2d, panel);
+        drawBullets(g2d, panel);
+        drawBombs(g2d, panel);
     }
 
     public int getScore() {
@@ -109,7 +152,9 @@ public class GameManager implements ActionListener {
         return checkVictory() ? "Victory" : "Game Over";
     }
 
-    public int getLives() { return lives; }
+    public int getLives() {
+        return lives;
+    }
 
     public void moveLeftShuttle() {
         shuttle.moveLeft();
@@ -119,15 +164,11 @@ public class GameManager implements ActionListener {
         shuttle.moveRight();
     }
 
-    public void shuttleShot() {
-        bulletList.add(new Projectile(shuttle.getXPosition() + 15, shuttle.getYPosition() + 10, 15, 15, "bullet.png"));
+    public void shuttleStayStill(){
+        shuttle.stayStill();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        moveAliens();
-        moveBullets();
-        moveBombs();
-        updateScore();
+    public void shuttleShot() {
+        bulletList.add(new Projectile(shuttle.getXPosition() + 15, shuttle.getYPosition() + 10, 15, 15, "bullet.png"));
     }
 }

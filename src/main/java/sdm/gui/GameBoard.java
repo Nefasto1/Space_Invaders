@@ -95,16 +95,26 @@ public class GameBoard extends JPanel {
     private class TAdapter extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_LEFT)
-                game.moveLeftShuttle();
-            else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-                game.moveRightShuttle();
+            if (state.equals("Game")) {
+                if (e.getKeyCode() == KeyEvent.VK_LEFT)
+                    game.moveLeftShuttle();
+                else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+                    game.moveRightShuttle();
 
-            int current_time = (int) System.currentTimeMillis();
-            if (e.getKeyCode() == KeyEvent.VK_UP && current_time - lastshot > 500) {
-                game.shuttleShot();
-                lastshot = (int) System.currentTimeMillis();
+                int current_time = (int) System.currentTimeMillis();
+                if (e.getKeyCode() == KeyEvent.VK_UP && current_time - lastshot > 500) {
+                    game.shuttleShot();
+                    lastshot = (int) System.currentTimeMillis();
+                }
+            }
+        }
+        @Override
+        public void keyReleased(KeyEvent e) {
+            if (state.equals("Game")){
+                if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)
+                    game.shuttleStayStill();
             }
         }
     }
+
 }

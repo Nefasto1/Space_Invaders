@@ -4,6 +4,8 @@ import sdm.gui.Drawable;
 
 public class Shuttle extends Drawable {
 
+    private int dx;
+
     public Shuttle(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
@@ -16,17 +18,25 @@ public class Shuttle extends Drawable {
         super(x, y, width, height, imageName);
     }
 
-    public void moveRight() {
-        x += 5;
+    public void move(){
+        x += dx;
         if (x>445){
             x = 445;
         }
-    }
-
-    public void moveLeft() {
-        x -= 5;
         if (x<0){
             x = 0;
         }
+    }
+    public void moveRight() {
+        dx = 3;
+    }
+
+    public void moveLeft() {
+        dx = -3;
+
+    }
+
+    public void stayStill(){
+        dx = 0;
     }
 }
