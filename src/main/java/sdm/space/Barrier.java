@@ -34,6 +34,7 @@ public class Barrier extends Drawable {
     public void die(){
         if (lives > 0) {
             lives--;
+            loadImage(imageName + lives + ".png");
         }
     }
 
