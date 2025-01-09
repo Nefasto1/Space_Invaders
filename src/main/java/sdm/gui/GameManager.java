@@ -24,11 +24,11 @@ public class GameManager implements ActionListener {
 
     public GameManager() {
         timer = new Timer(10, this);
-        reset(3, 1);
+        reset(3, 1, "red");
     }
 
-    public void reset(int NumBarriers, int NumRows) {
-        shuttle = new Shuttle(40, 400, 45, 45, "spaceship.png");
+    public void reset(int NumBarriers, int NumRows, String shipColor) {
+        shuttle = new Shuttle(40, 400, 45, 45, "spaceship_" + shipColor + ".png");
         alienList = new ArrayList<>();
         bulletList = new ArrayList<>();
         bombList = new ArrayList<>();

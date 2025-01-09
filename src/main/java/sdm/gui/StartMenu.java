@@ -3,9 +3,7 @@ package sdm.gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class StartMenu {
@@ -20,10 +18,24 @@ public class StartMenu {
     private int selectedBarriers = 0;
     private int selectedRows = 1;
 
+    private String[] spaceshipColors = {"red", "blue", "green"};
+    private Image[] images;
+    private JRadioButton[] colorButtons;
+    private String selectedColor = "red";
+    private JPanel panel;
+
     public StartMenu(JPanel panel) {
+        images = new Image[3];
+        for (int i = 0; i < spaceshipColors.length; i++) {
+            ImageIcon image = new ImageIcon("resources/spaceship_" + spaceshipColors[i] + ".png");
+            images[i] = image.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+        }
+        this.panel = panel;
+
         startButton = createButton("Start", e -> {setVisible(false); start = true;});
         exitButton = createButton("Exit", e -> System.exit(0));
         barrierButtons = CreateRadioButtons(panel, IntStream.range(0, 6).toArray(), e -> selectedBarriers = Integer.parseInt(((JRadioButton) e.getSource()).getText()));
+        colorButtons = CreateRadioButtons(panel, IntStream.range(0, 3).toArray(), e -> selectedColor = spaceshipColors[Integer.parseInt(((JRadioButton) e.getSource()).getText())]);
         rowButtons = CreateRadioButtons(panel, IntStream.range(1, 6).toArray(), e -> selectedRows = Integer.parseInt(((JRadioButton) e.getSource()).getText()));
 
         panel.add(startButton);
@@ -68,6 +80,7 @@ public class StartMenu {
         exitButton.setVisible(visible);
         Arrays.stream(barrierButtons).forEach(button -> button.setVisible(visible));
         Arrays.stream(rowButtons).forEach(button -> button.setVisible(visible));
+        Arrays.stream(colorButtons).forEach(button -> button.setVisible(visible));
     }
 
     public boolean isStart() {
@@ -78,11 +91,25 @@ public class StartMenu {
         drawBackground(g2d, width, height);
         drawTitle(g2d, width, height);
 
+        drawColorShip(g2d, "Number of Colors:", colorButtons, width/8, height/6 + 150);
         drawRadioButtons(g2d, "Number of Barriers:", barrierButtons, width/8, height/6 + 225);
         drawRadioButtons(g2d, "Number of Rows:", rowButtons, width/8, height/6 + 275);
 
-        startButton.setBounds(50, height/6, width-100, 75);
-        exitButton.setBounds(50, height/6 + 100, width-100, 75);
+        startButton.setBounds(30, height/6, (width-100)/2, 75);
+        exitButton.setBounds(70 + (width-100)/2, height/6, (width-100)/2, 75);
+    }
+
+    private void drawColorShip(Graphics2D g2d, String labelText, JRadioButton[] buttons, int x, int y) {
+        Font font = new Font("Helvetica", Font.PLAIN, 20);
+        g2d.setFont(font);
+        g2d.setColor(Color.white);
+
+        g2d.drawString(labelText, x, y - 10);
+
+        for (int i = 0; i < buttons.length; i++) {
+            buttons[i].setBounds(x + 150 + (i * 100), y, 20, 20);
+            g2d.drawImage(images[i], x + 120 + (i * 100), y - 5, panel);
+        }
     }
 
     private void drawRadioButtons(Graphics2D g2d, String labelText, JRadioButton[] buttons, int x, int y) {
@@ -118,5 +145,9 @@ public class StartMenu {
 
     public int getNumRows() {
         return selectedRows;
+    }
+
+    public String getColor() {
+        return selectedColor;
     }
 }
