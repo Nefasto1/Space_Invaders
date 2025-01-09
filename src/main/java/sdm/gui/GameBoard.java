@@ -66,7 +66,7 @@ public class GameBoard extends JPanel {
         startMenu.draw(g2d, width, height);
         if (startMenu.isStart()) {
             state = "Game";
-            game.reset();
+            game.reset(startMenu.getNumBarriers(), startMenu.getNumRows());
         }
     }
 
@@ -87,7 +87,7 @@ public class GameBoard extends JPanel {
 
         endMenu.draw(g2d, width, height, game.getScore(), game.getResult());
         if (endMenu.isRetry()) {
-            game.reset();
+            game.reset(startMenu.getNumBarriers(), startMenu.getNumRows());
             state = "Game";
         }
     }

@@ -24,16 +24,16 @@ public class GameManager implements ActionListener {
 
     public GameManager() {
         timer = new Timer(10, this);
-        reset();
+        reset(3, 1);
     }
 
-    public void reset() {
+    public void reset(int NumBarriers, int NumRows) {
         shuttle = new Shuttle(40, 400, 45, 45, "spaceship.png");
         alienList = new ArrayList<>();
         bulletList = new ArrayList<>();
         bombList = new ArrayList<>();
-        barrierList = BarrierFactory.generate(3);
-        alienList = AlienFactory.generate(2);
+        barrierList = BarrierFactory.generate(NumBarriers);
+        alienList = AlienFactory.generate(NumRows);
         alienSpeedy = null;
 
         score = 0;
