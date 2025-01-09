@@ -29,10 +29,32 @@ public class AlienSpeedy extends Drawable {
         this.x = movingRight ? 0 : 500;
     }
 
-    public void moveRight() {
-        x += 4;
-
+    public void move() {
+        if (movingRight) {
+            moveRight();
+        } else {
+            moveLeft();
+        }
     }
 
+    public void moveRight() {
+        x += 4;
+        if (x >= 445) {
+            escaped=true;
+            die();
+        }
+    }
+
+    public void moveLeft() {
+        x -= 4;
+        if (x <= 0) {
+            escaped=true;
+            die();
+        }
+    }
+
+    public boolean isEscaped() {
+        return escaped;
+    }
 
 }
