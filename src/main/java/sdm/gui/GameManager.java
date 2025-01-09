@@ -15,6 +15,7 @@ public class GameManager implements ActionListener {
     protected ArrayList<Alien> alienList;
     protected ArrayList<Projectile> bulletList;
     protected ArrayList<Bomb> bombList;
+    protected ArrayList<Barrier> barrierList;
 
     private int score;
     private int speedyKilled;
@@ -31,6 +32,7 @@ public class GameManager implements ActionListener {
         alienList = new ArrayList<>();
         bulletList = new ArrayList<>();
         bombList = new ArrayList<>();
+        barrierList = BarrierFactory.generate(3);
         alienList = AlienFactory.generate(2);
         alienSpeedy = null;
 
@@ -73,8 +75,18 @@ public class GameManager implements ActionListener {
             bulletList.stream().filter(Projectile::isAlive).forEach(bullet -> CollisionChecker.checkAndDestroy(bullet, alienSpeedy));
     }
 
+    private void bulletBarrierCollisionCheck() {
+        bulletList.stream().filter(Projectile::isAlive).forEach(bullet ->
+                barrierList.stream().filter(Barrier::isAlive).forEach(barrier -> CollisionChecker.checkAndDestroy(bullet, barrier)));
+    }
+
     private void moveBombs() {
         bombList.stream().filter(Bomb::isAlive).forEach(Bomb::move);
+    }
+
+    private void bombBarrierCollisionCheck() {
+        bombList.stream().filter(Bomb::isAlive).forEach(bomb ->
+                barrierList.stream().filter(Barrier::isAlive).forEach(barrier -> CollisionChecker.checkAndDestroy(bomb, barrier)));
     }
 
     private void bombShuttleCollisionCheck() {
@@ -124,6 +136,10 @@ public class GameManager implements ActionListener {
             alienSpeedy.draw(g2d, panel);
     }
 
+    private void drawBarrier(Graphics2D g2d, JPanel panel) {
+        barrierList.stream().filter(Barrier::isAlive).forEach(barrier -> barrier.draw(g2d, panel));
+    }
+
     private void generateSpeedy() {
         if (Math.random() < 0.005 && alienSpeedy == null)
             alienSpeedy = new AlienSpeedy(30,30,"alienSpeedy.png");
@@ -143,8 +159,10 @@ public class GameManager implements ActionListener {
 
     private void CollisionChecker() {
         bulletAlienCollisionCheck();
+        bulletBarrierCollisionCheck();
         bombShuttleCollisionCheck();
         bulletSpeedyCollisionCheck();
+        bombBarrierCollisionCheck();
         killSpeedyIfDead();
     }
 
@@ -163,7 +181,6 @@ public class GameManager implements ActionListener {
             moveEntities();
             CollisionChecker();
             updateScore();
-
         }
     }
 
@@ -172,6 +189,7 @@ public class GameManager implements ActionListener {
         drawAliens(g2d, panel);
         drawBullets(g2d, panel);
         drawBombs(g2d, panel);
+        drawBarrier(g2d, panel);
         drawSpeedy(g2d, panel);
     }
 

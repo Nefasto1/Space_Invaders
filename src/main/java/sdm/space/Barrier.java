@@ -12,6 +12,7 @@ public class Barrier extends Drawable {
 
     public Barrier() {
         super();
+        imageName = "";
     }
 
     public Barrier(int x, int y, int width, int height, String imageName) {
@@ -34,7 +35,8 @@ public class Barrier extends Drawable {
     public void die(){
         if (lives > 0) {
             lives--;
-            loadImage(imageName + lives + ".png");
+            if (!imageName.isEmpty())
+                loadImage(imageName + lives + ".png");
         }
     }
 
