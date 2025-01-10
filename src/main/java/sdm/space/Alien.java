@@ -52,7 +52,7 @@ public class Alien extends Drawable {
     public void moveDown() {
         y += 15;
         moveDownCounter++;
-        if (moveDownCounter % 5 == 0) {
+        if (moveDownCounter % 6 == 0) {
             increaseSpeed();
         }
     }
