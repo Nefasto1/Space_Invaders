@@ -147,10 +147,10 @@ public class TestAlien {
         int y = 8;
 
         Alien alien = new Alien(x, y, 45, 45);
-        int initialSpeed = alien.getSpeed();
+        int initialSpeed = alien.getX_speed();
         alien.moveDown();
         assertAll("Check speed after moving down",
-                () -> assertEquals(initialSpeed + 0, alien.getSpeed()),
+                () -> assertEquals(initialSpeed, alien.getX_speed()),
                 () -> assertEquals(23, alien.getYPosition())
         );
     }

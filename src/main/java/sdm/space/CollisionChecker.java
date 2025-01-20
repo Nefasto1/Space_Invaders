@@ -6,14 +6,14 @@ public class CollisionChecker {
         double distance_Y = Math.pow(first.getYPosition() - second.getYPosition(), 2);
         double distance = Math.sqrt(distance_X + distance_Y);
 
-        double collisionDistance = (double) (first.getWidth()/2 + second.getWidth()/2);
+        double first_width = first.getWidth();
+        double second_width = second.getWidth();
+        double collisionDistance = first_width / 2 + second_width / 2;
 
-        boolean collided = distance <= collisionDistance;
-
-        return collided;
+        return distance <= collisionDistance;
     }
 
-    public static boolean checkAndDestroy(Entity first, Entity second) {
+    public static void checkAndDestroy(Entity first, Entity second) {
         boolean collided = check(first, second);
 
         if (collided) {
@@ -21,6 +21,5 @@ public class CollisionChecker {
             second.die();
         }
 
-        return collided;
     }
 }

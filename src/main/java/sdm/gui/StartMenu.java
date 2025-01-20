@@ -7,22 +7,22 @@ import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class StartMenu {
-    private JButton startButton;
-    private JButton exitButton;
+    private final JButton startButton;
+    private final JButton exitButton;
     private boolean start=false;
 
-    private JRadioButton[] barrierButtons;
-    private JRadioButton[] rowButtons;
+    private final JRadioButton[] barrierButtons;
+    private final JRadioButton[] rowButtons;
     private JRadioButton[] speedButtons;
 
     private int selectedBarriers = 0;
     private int selectedRows = 1;
 
-    private String[] spaceshipColors = {"red", "blue", "green"};
-    private Image[] images;
-    private JRadioButton[] colorButtons;
+    private final String[] spaceshipColors = {"red", "blue", "green"};
+    private final Image[] images;
+    private final JRadioButton[] colorButtons;
     private String selectedColor = "red";
-    private JPanel panel;
+    private final JPanel panel;
 
     public StartMenu(JPanel panel) {
         images = new Image[3];
@@ -91,7 +91,7 @@ public class StartMenu {
         drawBackground(g2d, width, height);
         drawTitle(g2d, width, height);
 
-        drawColorShip(g2d, "Number of Colors:", colorButtons, width/8, height/6 + 150);
+        drawColorShip(g2d, colorButtons, width/8, height/6 + 150);
         drawRadioButtons(g2d, "Number of Barriers:", barrierButtons, width/8, height/6 + 225);
         drawRadioButtons(g2d, "Number of Rows:", rowButtons, width/8, height/6 + 275);
 
@@ -99,12 +99,12 @@ public class StartMenu {
         exitButton.setBounds(70 + (width-100)/2, height/6, (width-100)/2, 75);
     }
 
-    private void drawColorShip(Graphics2D g2d, String labelText, JRadioButton[] buttons, int x, int y) {
+    private void drawColorShip(Graphics2D g2d, JRadioButton[] buttons, int x, int y) {
         Font font = new Font("Helvetica", Font.PLAIN, 20);
         g2d.setFont(font);
         g2d.setColor(Color.white);
 
-        g2d.drawString(labelText, x, y - 10);
+        g2d.drawString("Number of Colors:", x, y - 10);
 
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].setBounds(x + 150 + (i * 100), y, 20, 20);

@@ -17,7 +17,7 @@ public class Bomb extends Drawable {
 
     public void move() {
         y += 2;
-        if (y > 500) {
+        if (y > windowHeight) {
             super.die();
         }
     }

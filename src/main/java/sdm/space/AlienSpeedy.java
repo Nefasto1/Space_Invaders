@@ -11,11 +11,6 @@ public class AlienSpeedy extends Drawable {
         super();
     }
 
-    public AlienSpeedy(int width, int height) {
-        super(0, 10, width, height);
-        initSpeedy();
-    }
-
     public AlienSpeedy(int width, int height, String imageName) {
         super(0, 10, width, height, imageName);
         initSpeedy();
@@ -31,7 +26,7 @@ public class AlienSpeedy extends Drawable {
 
     private void initSpeedy() {
         movingRight = Math.random() < 0.5;
-        this.x = movingRight ? 0 : 500;
+        this.x = movingRight ? 0 : windowWidth;
     }
 
     public void move() {
@@ -44,7 +39,7 @@ public class AlienSpeedy extends Drawable {
 
     public void moveRight() {
         x += 4;
-        if (x >= 445) {
+        if (x >= windowWidth) {
             escaped=true;
             die();
         }

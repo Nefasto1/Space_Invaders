@@ -1,15 +1,11 @@
 package sdm.gui;
 
-import sdm.space.Alien;
-import sdm.space.Bomb;
-import sdm.space.Projectile;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
 
 public class GameMenu {
-    JPanel panel;
+    final JPanel panel;
 
     public GameMenu(JPanel panel) {
         this.panel = panel;

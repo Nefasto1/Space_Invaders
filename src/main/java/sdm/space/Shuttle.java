@@ -20,8 +20,8 @@ public class Shuttle extends Drawable {
 
     public void move(){
         x += dx;
-        if (x>445){
-            x = 445;
+        if (x > windowWidth-rightOffset){
+            x = windowWidth-rightOffset;
         }
         if (x<0){
             x = 0;

@@ -5,8 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class EndMenu {
-    private JButton retryButton;
-    private JButton exitButton;
+    private final JButton retryButton;
+    private final JButton exitButton;
     private boolean retry = false;
 
     public EndMenu(JPanel panel) {

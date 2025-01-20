@@ -3,20 +3,17 @@ package sdm.space;
 public abstract class Entity {
     protected int x;
     protected int y;
-    protected int width;
-    protected int height;
+    protected final int width;
+    protected final int height;
     protected boolean alive = true;
+
+    protected final int windowWidth = 500;
+    protected final int windowHeight = 500;
+    protected final int rightOffset = 55;
 
     public Entity() {
         this.x = 0;
         this.y = 0;
-        this.width = 0;
-        this.height = 0;
-    }
-
-    public Entity(int x, int y) {
-        this.x = x;
-        this.y = y;
         this.width = 0;
         this.height = 0;
     }
@@ -38,10 +35,6 @@ public abstract class Entity {
 
     public int getWidth() {
         return width;
-    }
-
-    public int getHeight() {
-        return height;
     }
 
     public boolean isAlive() {

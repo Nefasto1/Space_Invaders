@@ -102,8 +102,8 @@ public class GameManager implements ActionListener {
 
     private void updateScore() {
         score = (int) alienList.stream().filter(alien -> !alien.isAlive()).count() * 100;
-        score += speedyKilled * 200;
-        score += checkVictory() ? 1000 : 0;
+        score += speedyKilled * 500;
+        score += checkVictory() ? 1000 * lives : 0;
         score -= checkLoss() ? 500 : 0;
     }
 

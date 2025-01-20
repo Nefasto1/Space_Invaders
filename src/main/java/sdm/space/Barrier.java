@@ -4,11 +4,7 @@ import sdm.gui.Drawable;
 
 public class Barrier extends Drawable {
     private int lives = 4;
-    private String imageName;
-
-    public Barrier(int x, int y, int width, int height) {
-        super(x, y, width, height);
-    }
+    private final String imageName;
 
     public Barrier() {
         super();
