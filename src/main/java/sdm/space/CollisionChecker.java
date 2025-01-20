@@ -8,9 +8,9 @@ public class CollisionChecker {
 
         double first_width = first.getWidth();
         double second_width = second.getWidth();
-        double collisionDistance = first_width / 2 + second_width / 2;
+        double collisionDistance = (first_width + second_width) / 2;
 
-        return distance <= collisionDistance;
+        return distance < collisionDistance;
     }
 
     public static void checkAndDestroy(Entity first, Entity second) {

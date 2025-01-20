@@ -39,7 +39,7 @@ public class AlienSpeedy extends Drawable {
 
     public void moveRight() {
         x += 4;
-        if (x >= windowWidth) {
+        if (x >= windowWidth - rightOffset) {
             escaped=true;
             die();
         }
