@@ -32,7 +32,7 @@ public class StartMenu {
         }
         this.panel = panel;
 
-        startButton = createButton("Start", e -> {setVisible(false); start = true;});
+        startButton = createButton("Play", e -> {setVisible(false); start = true;});
         exitButton = createButton("Exit", e -> System.exit(0));
         barrierButtons = CreateRadioButtons(panel, IntStream.range(0, 6).toArray(), e -> selectedBarriers = Integer.parseInt(((JRadioButton) e.getSource()).getText()));
         colorButtons = CreateRadioButtons(panel, IntStream.range(0, 3).toArray(), e -> selectedColor = spaceshipColors[Integer.parseInt(((JRadioButton) e.getSource()).getText())]);
@@ -91,12 +91,12 @@ public class StartMenu {
         drawBackground(g2d, width, height);
         drawTitle(g2d, width, height);
 
-        drawColorShip(g2d, colorButtons, width/8, height/6 + 150);
-        drawRadioButtons(g2d, "Number of Barriers:", barrierButtons, width/8, height/6 + 225);
-        drawRadioButtons(g2d, "Number of Rows:", rowButtons, width/8, height/6 + 275);
+        drawColorShip(g2d, colorButtons, width/8, height/6 + 175);
+        drawRadioButtons(g2d, "Number of Barriers:", barrierButtons, width/8, height/6 + 250);
+        drawRadioButtons(g2d, "Number of Rows:", rowButtons, width/8, height/6 + 325);
 
-        startButton.setBounds(30, height/6, (width-100)/2, 75);
-        exitButton.setBounds(70 + (width-100)/2, height/6, (width-100)/2, 75);
+        startButton.setBounds(30, height/6 + 20, (width-100)/2, 75);
+        exitButton.setBounds(70 + (width-100)/2, height/6 + 20, (width-100)/2, 75);
     }
 
     private void drawColorShip(Graphics2D g2d, JRadioButton[] buttons, int x, int y) {

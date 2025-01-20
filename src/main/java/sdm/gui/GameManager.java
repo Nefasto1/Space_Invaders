@@ -141,7 +141,7 @@ public class GameManager implements ActionListener {
     }
 
     private void generateSpeedy() {
-        if (Math.random() < 0.005 && alienSpeedy == null)
+        if (Math.random() < 0.001 && alienSpeedy == null)
             alienSpeedy = new AlienSpeedy(30,30,"alienSpeedy.png");
     }
 
