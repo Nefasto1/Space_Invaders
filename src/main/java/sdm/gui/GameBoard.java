@@ -10,7 +10,7 @@ public class GameBoard extends JPanel {
     private EndMenu endMenu;
     private GameMenu gameMenu;
     private GameManager game;
-    private long lastshot;
+    private long lastShot;
 
     private String state = "Start";
 
@@ -90,6 +90,11 @@ public class GameBoard extends JPanel {
             game.reset(startMenu.getNumBarriers(), startMenu.getNumRows(), startMenu.getColor());
             state = "Game";
         }
+
+        if (endMenu.isGoToSettings()){
+            startMenu.reset();
+            state = "Start";
+        }
     }
 
     private class TAdapter extends KeyAdapter {
@@ -102,9 +107,9 @@ public class GameBoard extends JPanel {
                     game.moveRightShuttle();
 
                 long current_time = System.currentTimeMillis();
-                if (e.getKeyCode() == KeyEvent.VK_UP && current_time - lastshot > 500) {
+                if (e.getKeyCode() == KeyEvent.VK_UP && current_time - lastShot > 500) {
                     game.shuttleShot();
-                    lastshot = System.currentTimeMillis();
+                    lastShot = System.currentTimeMillis();
                 }
             }
         }

@@ -7,14 +7,18 @@ import java.awt.event.ActionListener;
 public class EndMenu {
     private final JButton retryButton;
     private final JButton exitButton;
+    private final JButton goToSettingsButton;
     private boolean retry = false;
+    private boolean goToSettings = false;
 
     public EndMenu(JPanel panel) {
         retryButton = createButton("Retry", e -> {setVisible(false); retry = true;});
         exitButton = createButton("Exit", e -> System.exit(0));
+        goToSettingsButton = createButton( "Go to settings", e -> {setVisible(false); goToSettings = true;});
 
         panel.add(retryButton);
         panel.add(exitButton);
+        panel.add(goToSettingsButton);
     }
 
     private JButton createButton(String text, ActionListener action) {
@@ -31,16 +35,20 @@ public class EndMenu {
     private void setVisible(boolean visible) {
         retryButton.setVisible(visible);
         exitButton.setVisible(visible);
+        goToSettingsButton.setVisible(visible);
     }
 
     public void reset() {
         retry = false;
+        goToSettings = false;
         setVisible(true);
     }
 
     public boolean isRetry() {
         return retry;
     }
+
+    public boolean isGoToSettings() { return goToSettings; }
 
     public void draw(Graphics2D g2d, int width, int height, int score, String title) {
         drawBackground(g2d, width, height);
@@ -84,5 +92,7 @@ public class EndMenu {
         int buttonWidth = (width - 80) / 2 - 30;
         retryButton.setBounds(buttonWidth + 91, height / 2, buttonWidth, 50);
         exitButton.setBounds(50, height / 2, buttonWidth, 50);
+        goToSettingsButton.setBounds((width - buttonWidth)/2, height / 2 + 80, buttonWidth, 50);
     }
-}
+
+  }
