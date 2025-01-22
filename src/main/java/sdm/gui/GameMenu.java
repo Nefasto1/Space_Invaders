@@ -13,8 +13,7 @@ public class GameMenu {
 
     public void draw(Graphics2D g2d, int width, int height, GameManager game) {
         drawBackground(g2d, width, height);
-        drawScore(g2d, width, height, game.getScore());
-        drawLives(g2d, width, height, game.getLives());
+        drawStatistics(g2d, width, height, game.getScore(), game.getLives());
 
         game.draw(g2d, panel);
     }
@@ -27,21 +26,14 @@ public class GameMenu {
         g2d.draw(line);
     }
 
-    private void drawScore(Graphics2D g2d, int width, int height, int score) {
+    private void drawStatistics(Graphics2D g2d, int width, int height, int score, int lives) {
         var small = new Font("Helvetica", Font.BOLD, 14);
         var fontMetrics = g2d.getFontMetrics(small);
 
         g2d.setColor(Color.white);
         g2d.setFont(small);
         g2d.drawString("Score: " + score, (width - fontMetrics.stringWidth("Score: " + score)) - 20,height - 50);
-    }
-
-    private void drawLives(Graphics2D g2d, int width, int height, int lives) {
-        var small = new Font("Helvetica", Font.BOLD, 14);
-        var fontMetrics = g2d.getFontMetrics(small);
-
-        g2d.setColor(Color.white);
-        g2d.setFont(small);
         g2d.drawString("Lives: " + lives, (width - fontMetrics.stringWidth("Lives: " + lives)) - 20, height - 70);
     }
+
 }

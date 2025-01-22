@@ -114,7 +114,7 @@ public class StartMenu {
         g2d.setFont(font);
         g2d.setColor(Color.white);
 
-        g2d.drawString("Spaceship color:", x, y - 10);
+        g2d.drawString("Spaceship Color:", x, y - 10);
 
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].setBounds(x + 150 + (i * 100), y, 20, 20);
@@ -127,7 +127,7 @@ public class StartMenu {
         g2d.setFont(font);
         g2d.setColor(Color.white);
 
-        g2d.drawString("Size of the window:", x, y - 10);
+        g2d.drawString("Window Size:", x, y - 10);
 
         for (int i = 0; i < buttons.length; i++) {
             String size = Integer.toString(windowSizes[i]);
