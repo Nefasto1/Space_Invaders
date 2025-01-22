@@ -15,9 +15,6 @@ public class Alien extends Drawable {
     public Alien(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
-    public Alien(int x, int y, int width, int height, String imageName) {
-        super(x, y, width, height, imageName);
-    }
     public Alien(int x, int y, int width, int height, int windowWidth, int windowHeight, String imageName) {
         super(x,y,width,height,windowWidth, windowHeight, imageName);
         x_speed = windowWidth/250;
