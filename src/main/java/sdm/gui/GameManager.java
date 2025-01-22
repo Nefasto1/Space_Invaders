@@ -10,30 +10,35 @@ import java.util.ArrayList;
 
 public class GameManager implements ActionListener {
     private final Timer timer;
-    protected Shuttle shuttle;
-    protected AlienSpeedy alienSpeedy;
-    protected ArrayList<Alien> alienList;
-    protected ArrayList<Projectile> bulletList;
-    protected ArrayList<Bomb> bombList;
-    protected ArrayList<Barrier> barrierList;
+    private final int windowWidth;
+    private final int windowHeight;
+
+    private Shuttle shuttle;
+    private AlienSpeedy alienSpeedy;
+    private ArrayList<Alien> alienList;
+    private ArrayList<Projectile> bulletList;
+    private ArrayList<Bomb> bombList;
+    private ArrayList<Barrier> barrierList;
 
     private int score;
     private int speedyKilled;
     private int lastShotTime;
     private int lives;
 
-    public GameManager() {
+    public GameManager(int windowWidth, int windowHeight) {
         timer = new Timer(10, this);
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
         reset(3, 1, "red");
     }
 
     public void reset(int NumBarriers, int NumRows, String shipColor) {
-        shuttle = new Shuttle(40, 400, 45, 45, "spaceship_" + shipColor + ".png");
+        shuttle = new Shuttle(40, windowHeight-100, 45, 45, windowWidth, windowHeight,"spaceship_" + shipColor + ".png");
         alienList = new ArrayList<>();
         bulletList = new ArrayList<>();
         bombList = new ArrayList<>();
-        barrierList = BarrierFactory.generate(NumBarriers);
-        alienList = AlienFactory.generate(NumRows);
+        barrierList = BarrierFactory.generate(NumBarriers, windowWidth, windowHeight);
+        alienList = AlienFactory.generate(NumRows, windowWidth, windowHeight);
         alienSpeedy = null;
 
         score = 0;
@@ -56,7 +61,7 @@ public class GameManager implements ActionListener {
         double probability = 1 / (num_alien * 50);
 
         if (Math.random() < probability && curr_time - lastShotTime > 300) {
-            bombList.add(new Bomb(x + 16, y + 16, 15, 15, "bomb.png"));
+            bombList.add(new Bomb(x + 16, y + 16, 15, 15, windowWidth, windowHeight, "bomb.png"));
             lastShotTime = (int) System.currentTimeMillis();
         }
     }
@@ -112,7 +117,7 @@ public class GameManager implements ActionListener {
     }
 
     private boolean checkLoss() {
-        return !shuttle.isAlive() || alienList.stream().anyMatch(alien -> alien.getYPosition() >= 350);
+        return !shuttle.isAlive() || alienList.stream().anyMatch(alien -> alien.getYPosition() >= windowHeight-windowHeight/4 -30);
     }
 
     private void drawShuttle(Graphics2D g2d, JPanel panel) {
@@ -142,7 +147,7 @@ public class GameManager implements ActionListener {
 
     private void generateSpeedy() {
         if (Math.random() < 0.001 && alienSpeedy == null)
-            alienSpeedy = new AlienSpeedy(30,30,"alienSpeedy.png");
+            alienSpeedy = new AlienSpeedy(30,30, windowWidth, windowHeight,"alienSpeedy.png");
     }
 
     private void killSpeedyIfDead(){
@@ -222,6 +227,6 @@ public class GameManager implements ActionListener {
     }
 
     public void shuttleShot() {
-        bulletList.add(new Projectile(shuttle.getXPosition() + 15, shuttle.getYPosition() + 10, 15, 15, "bullet.png"));
+        bulletList.add(new Projectile(shuttle.getXPosition() + 15, shuttle.getYPosition() + 10, 15, 15, windowWidth, windowHeight,"bullet.png"));
     }
 }

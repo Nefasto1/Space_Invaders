@@ -7,8 +7,8 @@ public abstract class Entity {
     protected final int height;
     protected boolean alive = true;
 
-    protected final int windowWidth = 500;
-    protected final int windowHeight = 500;
+    protected final int windowWidth;
+    protected final int windowHeight;
     protected final int rightOffset = 55;
 
     public Entity() {
@@ -16,6 +16,8 @@ public abstract class Entity {
         this.y = 0;
         this.width = 0;
         this.height = 0;
+        this.windowWidth = 500;
+        this.windowHeight = 500;
     }
 
     public Entity(int x, int y, int width, int height) {
@@ -23,6 +25,17 @@ public abstract class Entity {
         this.y = y;
         this.width = width;
         this.height = height;
+        this.windowWidth = 500;
+        this.windowHeight = 500;
+    }
+
+    public Entity(int x, int y, int width, int height, int windowWidth, int windowHeight) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
     }
 
     public int getXPosition() {

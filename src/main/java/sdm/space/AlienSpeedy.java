@@ -20,8 +20,9 @@ public class AlienSpeedy extends Drawable {
         super(x, y, width, height);
     }
 
-    public AlienSpeedy(int x, int y, int width, int height, String imageName) {
-        super(x, y, width, height, imageName);
+    public AlienSpeedy(int width, int height, int windowWidth, int windowHeight, String imageName) {
+        super(0,10,width,height,windowWidth, windowHeight, imageName);
+        initSpeedy();
     }
 
     private void initSpeedy() {

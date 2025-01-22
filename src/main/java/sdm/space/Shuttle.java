@@ -4,22 +4,22 @@ import sdm.gui.Drawable;
 
 public class Shuttle extends Drawable {
 
-    private int dx;
-
-    public Shuttle(int x, int y, int width, int height) {
-        super(x, y, width, height);
-    }
+    private int stepX;
 
     public Shuttle() {
         super();
     }
-
+    public Shuttle(int x, int y, int width, int height) {
+        super(x, y, width, height);
+    }
     public Shuttle(int x, int y, int width, int height, String imageName) {
         super(x, y, width, height, imageName);
     }
+    public Shuttle(int x, int y, int width, int height, int windowWidth, int windowHeight, String imageName) {
+        super(x,y,width,height,windowWidth, windowHeight, imageName);}
 
     public void move(){
-        x += dx;
+        x += stepX;
         if (x > windowWidth-rightOffset){
             x = windowWidth-rightOffset;
         }
@@ -28,15 +28,15 @@ public class Shuttle extends Drawable {
         }
     }
     public void moveRight() {
-        dx = 3;
+        stepX = 3;
     }
 
     public void moveLeft() {
-        dx = -3;
+        stepX = -3;
 
     }
 
     public void stayStill(){
-        dx = 0;
+        stepX = 0;
     }
 }

@@ -24,6 +24,17 @@ public class Drawable extends Entity {
         loadImage(imageName);
     }
 
+    public Drawable(int x, int y, int width, int height, int windowWidth, int windowHeight) {
+        super(x, y, width, height, windowWidth, windowHeight);
+        loadImage(null);
+    }
+
+    public Drawable(int x, int y, int width, int height, int windowWidth, int windowHeight, String imageName) {
+        super(x, y, width, height, windowWidth, windowHeight);
+
+        loadImage(imageName);
+    }
+
     protected void loadImage(String imageName) {
         if (imageName != null) {
             ImageIcon ii = new ImageIcon("resources/" + imageName);

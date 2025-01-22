@@ -22,7 +22,7 @@ public class GameMenu {
     private void drawBackground(Graphics2D g2d, int width, int height) {
         g2d.setColor(Color.black);
         g2d.fillRect(0, 0, width, height);
-        Line2D line = new Line2D.Double(0, 350, 500, 350);
+        Line2D line = new Line2D.Double(0, height-height/4, width, height-height/4);
         g2d.setColor(Color.WHITE);
         g2d.draw(line);
     }

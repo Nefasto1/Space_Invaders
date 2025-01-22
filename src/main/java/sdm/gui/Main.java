@@ -10,13 +10,18 @@ public class Main extends JFrame {
     }
 
     private void initUI() {
-        add(new GameBoard());
+        int windowWidth = 800;
+        int windowHeight = 800;
+        add(new GameBoard(windowWidth, windowHeight));
 
-        setSize(500, 500);
+        setSize(windowWidth, windowHeight);
+        setResizable(false);
 
-        setTitle("Application");
+        setTitle("Space Invaders");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        ImageIcon myIcon = new ImageIcon("resources/alien.png");
+        setIconImage(myIcon.getImage());
     }
 
     public static void main(String[] args) {

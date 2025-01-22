@@ -10,7 +10,7 @@ public class TestAlienSpeedy {
         int x = 2;
         int y = 5;
 
-        AlienSpeedy aliensp = new AlienSpeedy(x,y,45,45, "img");
+        AlienSpeedy aliensp = new AlienSpeedy(x,y,45, 45);
         aliensp.moveRight();
         assertAll("Check all the coordinates",
                 () -> assertEquals(6, aliensp.getXPosition()),

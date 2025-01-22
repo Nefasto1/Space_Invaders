@@ -14,25 +14,22 @@ public class GameBoard extends JPanel {
 
     private String state = "Start";
 
-    public GameBoard() {
-        initializeBoard();
+    public GameBoard(int windowWidth, int windowHeight) {
+        initializeBoard(windowWidth, windowHeight);
     }
 
-    private void initializeBoard() {
+    private void initializeBoard(int windowWidth, int windowHeight) {
         addKeyListener(new TAdapter());
         setFocusable(true);
 
-        int width = 500;
-        int height = 500;
-
-        setSize(width, height);
+        setSize(windowWidth, windowHeight);
         this.setLayout(null);
 
         startMenu = new StartMenu(this);
         endMenu = new EndMenu(this);
         gameMenu = new GameMenu(this);
 
-        game = new GameManager();
+        game = new GameManager(windowWidth, windowHeight);
     }
 
     @Override

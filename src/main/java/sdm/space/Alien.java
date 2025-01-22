@@ -5,24 +5,24 @@ import sdm.gui.Drawable;
 public class Alien extends Drawable {
 
     private int x_speed = 2;
-    private final int y_speed = 15;
-
+    private int y_speed = 15;
     private int moveDownCounter = 0;
-
     private boolean movingRight = true;
-
-    public Alien(int x, int y, int width, int height) {
-        super(x, y, width, height);
-    }
 
     public Alien() {
         super();
     }
-
+    public Alien(int x, int y, int width, int height) {
+        super(x, y, width, height);
+    }
     public Alien(int x, int y, int width, int height, String imageName) {
         super(x, y, width, height, imageName);
     }
-
+    public Alien(int x, int y, int width, int height, int windowWidth, int windowHeight, String imageName) {
+        super(x,y,width,height,windowWidth, windowHeight, imageName);
+        x_speed = windowWidth/250;
+        y_speed = 5*windowWidth/100;
+    }
 
     public void move() {
         if (movingRight) {

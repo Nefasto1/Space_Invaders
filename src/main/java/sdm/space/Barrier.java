@@ -18,6 +18,13 @@ public class Barrier extends Drawable {
         loadImage(imageName + lives + ".png");
     }
 
+    public Barrier(int x, int y, int width, int height, int windowWidth, int windowHeight, String imageName) {
+        super(x,y,width,height,windowWidth, windowHeight);
+        this.imageName = imageName;
+
+        loadImage(imageName + lives + ".png");
+    }
+
     public int getLives() {
         return lives;
     }
