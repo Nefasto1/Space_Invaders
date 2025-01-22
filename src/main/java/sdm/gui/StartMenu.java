@@ -13,7 +13,6 @@ public class StartMenu {
 
     private final JRadioButton[] barrierButtons;
     private final JRadioButton[] rowButtons;
-    private JRadioButton[] speedButtons;
 
     private int selectedBarriers = 0;
     private int selectedRows = 1;

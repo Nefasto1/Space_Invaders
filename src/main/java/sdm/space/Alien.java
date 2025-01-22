@@ -5,7 +5,7 @@ import sdm.gui.Drawable;
 public class Alien extends Drawable {
 
     private int x_speed = 2;
-    private int y_speed = 15;
+    private final int y_speed = 15;
 
     private int moveDownCounter = 0;
 

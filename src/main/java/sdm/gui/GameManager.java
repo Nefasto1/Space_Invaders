@@ -19,7 +19,7 @@ public class GameManager implements ActionListener {
 
     private int score;
     private int speedyKilled;
-    private int lastShot;
+    private int lastShotTime;
     private int lives;
 
     public GameManager() {
@@ -40,7 +40,7 @@ public class GameManager implements ActionListener {
         speedyKilled = 0;
         lives = 3;
 
-        lastShot = (int) System.currentTimeMillis();
+        lastShotTime = (int) System.currentTimeMillis();
 
         timer.restart();
     }
@@ -55,9 +55,9 @@ public class GameManager implements ActionListener {
         double num_alien = (double) alienList.stream().filter(Alien::isAlive).count();
         double probability = 1 / (num_alien * 50);
 
-        if (Math.random() < probability && curr_time - lastShot > 300) {
+        if (Math.random() < probability && curr_time - lastShotTime > 300) {
             bombList.add(new Bomb(x + 16, y + 16, 15, 15, "bomb.png"));
-            lastShot = (int) System.currentTimeMillis();
+            lastShotTime = (int) System.currentTimeMillis();
         }
     }
 
@@ -157,7 +157,7 @@ public class GameManager implements ActionListener {
             alienSpeedy.move();
     }
 
-    private void CollisionChecker() {
+    private void collisionChecker() {
         bulletAlienCollisionCheck();
         bulletBarrierCollisionCheck();
         bombShuttleCollisionCheck();
@@ -179,7 +179,7 @@ public class GameManager implements ActionListener {
         if (!isEnded()){
             generateSpeedy();
             moveEntities();
-            CollisionChecker();
+            collisionChecker();
             updateScore();
         }
     }
