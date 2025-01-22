@@ -10,8 +10,8 @@ public class Main extends JFrame {
     }
 
     private void initUI() {
-        int windowWidth = 800;
-        int windowHeight = 800;
+        int windowWidth = 600;
+        int windowHeight = 600;
         add(new GameBoard(windowWidth, windowHeight));
 
         setSize(windowWidth, windowHeight);

@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class GameManager implements ActionListener {
     private final Timer timer;
-    private final int windowWidth;
-    private final int windowHeight;
+    private int windowWidth;
+    private int windowHeight;
 
     private Shuttle shuttle;
     private AlienSpeedy alienSpeedy;
@@ -27,12 +27,15 @@ public class GameManager implements ActionListener {
 
     public GameManager(int windowWidth, int windowHeight) {
         timer = new Timer(10, this);
-        this.windowWidth = windowWidth;
-        this.windowHeight = windowHeight;
-        reset(3, 1, "red");
+        reset(3, 1, "red", windowWidth, windowHeight);
     }
 
-    public void reset(int NumBarriers, int NumRows, String shipColor) {
+    public void reset(int NumBarriers, int NumRows, String shipColor, int windowWidth, int windowHeight) {
+        lastShotTime = (int) System.currentTimeMillis();
+
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
+
         shuttle = new Shuttle(40, windowHeight-100, 45, 45, windowWidth, windowHeight,"spaceship_" + shipColor + ".png");
         alienList = new ArrayList<>();
         bulletList = new ArrayList<>();
@@ -45,7 +48,6 @@ public class GameManager implements ActionListener {
         speedyKilled = 0;
         lives = 3;
 
-        lastShotTime = (int) System.currentTimeMillis();
 
         timer.restart();
     }

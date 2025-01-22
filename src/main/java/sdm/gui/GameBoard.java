@@ -57,13 +57,15 @@ public class GameBoard extends JPanel {
     }
 
     private void drawStartMenu(Graphics2D g2d) {
-        int width = getWidth();
-        int height = getHeight();
+        int width = startMenu.getWindowSize();
+        int height = startMenu.getWindowSize();
 
         startMenu.draw(g2d, width, height);
+        setSize(width, height);
+        SwingUtilities.getWindowAncestor(this).setSize(width, height);
         if (startMenu.isStart()) {
             state = "Game";
-            game.reset(startMenu.getNumBarriers(), startMenu.getNumRows(), startMenu.getColor());
+            game.reset(startMenu.getNumBarriers(), startMenu.getNumRows(), startMenu.getColor(), width, height);
         }
     }
 
@@ -84,7 +86,7 @@ public class GameBoard extends JPanel {
 
         endMenu.draw(g2d, width, height, game.getScore(), game.getResult());
         if (endMenu.isRetry()) {
-            game.reset(startMenu.getNumBarriers(), startMenu.getNumRows(), startMenu.getColor());
+            game.reset(startMenu.getNumBarriers(), startMenu.getNumRows(), startMenu.getColor(), width, height);
             state = "Game";
         }
 

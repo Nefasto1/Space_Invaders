@@ -33,7 +33,7 @@ public class GameMenu {
 
         g2d.setColor(Color.white);
         g2d.setFont(small);
-        g2d.drawString("Score: " + score, (width - fontMetrics.stringWidth("Score: " + score)) - 10,height - 50);
+        g2d.drawString("Score: " + score, (width - fontMetrics.stringWidth("Score: " + score)) - 20,height - 50);
     }
 
     private void drawLives(Graphics2D g2d, int width, int height, int lives) {
@@ -42,6 +42,6 @@ public class GameMenu {
 
         g2d.setColor(Color.white);
         g2d.setFont(small);
-        g2d.drawString("Lives: " + lives, (width - fontMetrics.stringWidth("Lives: " + lives)) - 10, height - 70);
+        g2d.drawString("Lives: " + lives, (width - fontMetrics.stringWidth("Lives: " + lives)) - 20, height - 70);
     }
 }
