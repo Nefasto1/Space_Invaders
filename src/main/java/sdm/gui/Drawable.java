@@ -5,7 +5,7 @@ import sdm.space.Entity;
 import javax.swing.*;
 import java.awt.*;
 
-public class Drawable extends Entity {
+public abstract class Drawable extends Entity {
     private Image image;
 
     public Drawable() {
