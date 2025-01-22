@@ -217,11 +217,11 @@ public class GameManager implements ActionListener {
     }
 
     public void moveLeftShuttle() {
-        shuttle.moveLeft();
+        shuttle.setStepToLeft();
     }
 
     public void moveRightShuttle() {
-        shuttle.moveRight();
+        shuttle.setStepToRight();
     }
 
     public void shuttleStayStill(){

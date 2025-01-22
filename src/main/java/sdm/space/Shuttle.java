@@ -24,11 +24,11 @@ public class Shuttle extends Drawable {
             x = 0;
         }
     }
-    public void moveRight() {
+    public void setStepToRight() {
         stepX = 3;
     }
 
-    public void moveLeft() {
+    public void setStepToLeft() {
         stepX = -3;
 
     }
