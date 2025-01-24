@@ -29,10 +29,11 @@ public class StartMenu {
 
     public StartMenu(JPanel panel) {
         images = new Image[3];
-        for (int i = 0; i < spaceshipColors.length; i++) {
-            ImageIcon image = new ImageIcon("resources/spaceship_" + spaceshipColors[i] + ".png");
-            images[i] = image.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT);
-        }
+        IntStream.range(0, spaceshipColors.length)
+                .forEach(i -> {
+                    ImageIcon image = new ImageIcon("resources/spaceship_" + spaceshipColors[i] + ".png");
+                    images[i] = image.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+                });
         this.panel = panel;
 
         startButton = createButton("Play", e -> {setVisible(false); start = true;});
@@ -54,14 +55,15 @@ public class StartMenu {
         ButtonGroup group = new ButtonGroup();
         JRadioButton[] buttons = new JRadioButton[values.length];
 
-        for (int i = 0; i < values.length; i++) {
-            buttons[i] = new JRadioButton(Integer.toString(values[i]));
-            buttons[i].addActionListener(action);
-            buttons[i].setBackground(new Color(0, 32, 48));
-            buttons[i].setForeground(Color.white);
-            group.add(buttons[i]);
-            panel.add(buttons[i]);
-        }
+        IntStream.range(0, values.length)
+                .forEach(i -> {
+                    buttons[i] = new JRadioButton(Integer.toString(values[i]));
+                    buttons[i].addActionListener(action);
+                    buttons[i].setBackground(new Color(0, 32, 48));
+                    buttons[i].setForeground(Color.white);
+                    group.add(buttons[i]);
+                    panel.add(buttons[i]);
+                });
         buttons[0].setSelected(true);
 
         return buttons;
@@ -116,10 +118,11 @@ public class StartMenu {
 
         g2d.drawString("Spaceship Color:", x, y - 10);
 
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i].setBounds(x + 150 + (i * 100), y, 20, 20);
-            g2d.drawImage(images[i], x + 120 + (i * 100), y - 5, panel);
-        }
+        IntStream.range(0, buttons.length)
+                .forEach(i -> {
+                    buttons[i].setBounds(x + 150 + (i * 100), y, 20, 20);
+                    g2d.drawImage(images[i], x + 120 + (i * 100), y - 5, panel);
+                });
     }
 
     private void drawWindowSizes (Graphics2D g2d, JRadioButton[] buttons, int x, int y) {
@@ -129,12 +132,12 @@ public class StartMenu {
 
         g2d.drawString("Window Size:", x, y - 10);
 
-        for (int i = 0; i < buttons.length; i++) {
-            String size = Integer.toString(windowSizes[i]);
-            buttons[i].setBounds(x + 150 + (i * 120), y, 20, 20);
-            g2d.drawString(size + "x" + size, x + 70 + (i * 120), y + 18);
-
-        }
+        IntStream.range(0, buttons.length)
+                .forEach(i -> {
+                    String size = Integer.toString(windowSizes[i]);
+                    buttons[i].setBounds(x + 150 + (i * 120), y, 20, 20);
+                    g2d.drawString(size + "x" + size, x + 70 + (i * 120), y + 18);
+                });
     }
 
     private void drawRadioButtons(Graphics2D g2d, String labelText, JRadioButton[] buttons, int x, int y) {
@@ -144,10 +147,11 @@ public class StartMenu {
 
         g2d.drawString(labelText, x, y - 10);
 
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i].setBounds(x + 150 + (i * 50), y, 20, 20);
-            g2d.drawString(buttons[i].getText(), x + 136 + (i * 50), y + 18);
-        }
+        IntStream.range(0, buttons.length)
+                .forEach(i -> {
+                    buttons[i].setBounds(x + 150 + (i * 50), y, 20, 20);
+                    g2d.drawString(buttons[i].getText(), x + 136 + (i * 50), y + 18);
+                });
     }
 
     private void drawBackground(Graphics2D g2d, int width, int height) {
