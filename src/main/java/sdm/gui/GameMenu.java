@@ -3,6 +3,7 @@ package sdm.gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.util.stream.IntStream;
 
 public class GameMenu {
     final JPanel panel;
@@ -29,11 +30,16 @@ public class GameMenu {
     private void drawStatistics(Graphics2D g2d, int width, int height, int score, int lives) {
         var small = new Font("Helvetica", Font.BOLD, 14);
         var fontMetrics = g2d.getFontMetrics(small);
-
+        Image image;
+        ImageIcon imageIcon = new ImageIcon("resources/heart.png");
+        image = imageIcon.getImage();
         g2d.setColor(Color.white);
         g2d.setFont(small);
-        g2d.drawString("Score: " + score, (width - fontMetrics.stringWidth("Score: " + score)) - 20,height - 50);
-        g2d.drawString("Lives: " + lives, (width - fontMetrics.stringWidth("Lives: " + lives)) - 20, height - 70);
+        g2d.drawString("Score: " + score, (width - fontMetrics.stringWidth("Score: " + score)) - 30,height - 110);
+        IntStream.range(0, lives)
+                .forEach(i -> {
+                    g2d.drawImage(image, width - 50 - i * 25, height - 145, 30,15, panel);
+                });
     }
 
 }
