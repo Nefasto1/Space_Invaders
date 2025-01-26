@@ -18,12 +18,6 @@ public abstract class Drawable extends Entity {
         loadImage(null);
     }
 
-    public Drawable(int x, int y, int width, int height, String imageName) {
-        super(x, y, width, height);
-
-        loadImage(imageName);
-    }
-
     public Drawable(int x, int y, int width, int height, int windowWidth, int windowHeight) {
         super(x, y, width, height, windowWidth, windowHeight);
         loadImage(null);
