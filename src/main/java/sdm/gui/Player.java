@@ -13,6 +13,7 @@ class Player {
     String gameOverPath = "resources/gameOver.wav";
     String projectilePath = "resources/shot.wav";
     String victoryPath = "resources/victory.wav";
+    String deadPath = "resources/dead.wav";
 
     void playMusic(String musicLoc){
         try {
@@ -46,6 +47,11 @@ class Player {
     void setVictoryAudio(){
         stopMusic();
         playMusic(victoryPath);
+    }
+
+    void setDeadAudio(){
+        stopMusic();
+        playMusic(deadPath);
     }
 
     void stopMusic(){
