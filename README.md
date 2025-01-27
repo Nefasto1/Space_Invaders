@@ -1,73 +1,88 @@
-# Behaviours
-## Shuttle
-- Movement
-  - Move Left
-  - Move Right
-- Die
-- Check if Alive
-- Check collision to projectiles
+# Space Invaders Game Implementation
 
-## Alien
-- Movement
-  - Move Left 
-  - Move Right
-     - If boundary met move down and change direction
-  - Speed dependent from height
-- Die
-- Check if Alive
-- Check collision to projectiles
+This repository contains an implementation of the classic arcade game Space Invaders in Java.
 
-## Projectile
-- Move down if shot by Alien
-- Move up if shot by shuttle
+## About the Game
 
-## Barrier
-- Check collision to projectiles
+Space Invaders is a space-themed shooter video game where players control a spaceship to destroy alien invaders. The player's goal is to survive as long as possible while destroying waves of descending aliens.
 
-## GUI
-- Start Menu
-- Game Scene
-- Ending Menu
+## Features
 
-# Test
-# Shuttle
-## Movement
-### Move Right
-- ~~(2, 2) -> (4, 2)~~
-- ~~(20, 8) -> (22, 8)~~
-### Move Left
-- ~~(2, 2) -> (0, 2)~~
-- ~~(20, 8) -> (18, 8)~~
-## Check is alive
-- ~~default -> True~~
-- ~~Die -> False~~
+- Classic Space Invaders gameplay
+- Player-controlled spaceship movement
+- Alien invasion waves
+- Laser beam shooting system
+- Barriers 
+- Collision detection between player ship, aliens, and lasers
+- SpeedyAlien to gain extra points
+- User-friendly starting menu
+- Game options (spaceship color, number of alien rows, number of barriers)
+- Sound effect for shots and collision between bomb and shuttle.
 
-# Alien
-## Movement
-### Move Right
-- ~~(2, 5) -> (4, 5)~~
-- ~~(8, 10) -> (10, 10)~~
+## Installation
 
-### Move Left
-- ~~(2, 5) -> (0, 5)~~
-- ~~(8, 10) -> (6, 10)~~
+To run the game:
 
-### Move Down
-- ~~(2, 5) -> (2, 20)~~
-- ~~(5, 10) -> (5, 25)v
+1. Ensure you have Java Development Kit (JDK) installed on your system.
+2. Clone this repository 
+3. Run the following commands:
+    ```
+    .\gradlew build
+    ```
+    this will create the build directory with the .jar file
+    ```
+    cd build/libs
+    ```
+    to navigate to the folder in which there is the .jar file
+    ```
+    java -jar Space_Invaders-1.0-SNAPSHOT.jar 
+    ```
+   to run the game.
 
-## Check is alive
-- ~~default -> True~~
-- ~~Die -> False~~
 
-# Bomb
-## Movement
-### Move Down
-- (2, 5) -> (2, 0)
-- (5, 7) -> (5, 2)
+## Usage
 
-# Projectle
-## Movement
-### Move Up
-- (2, 5) -> (2, 10)
-- (5, 7) -> (5, 12) 
+- Use arrow keys to move the spaceship left and right.
+- Press up to shoot lasers.
+- Avoid collisions with bomb.
+- Shot all alien and avoid they reach the line or kill the shuttle.
+
+## Code Structure
+
+The source folder is organized as follows:
+```
+📂 src/
+├── 📂 main/
+│   └── 📂 java/
+│       └── 📂 sdm/
+│           ├────── 📂 gui/
+│           │        ├── AlienFactory
+│           │        ├── BarrierFactory
+│           │        ├── Drawable
+│           │        ├── EndMenu
+│           │        ├── GameBoard
+│           │        ├── GameManager
+│           │        ├── GameMenu
+│           │        ├── Main
+│           │        ├── Player
+│           │        └── StartMenu
+│           └────── 📂 space/
+│                    ├── Alien
+│                    ├── AlienSpeedy
+│                    ├── Barrier
+│                    ├── Bomb
+│                    ├── CollisionChecker
+│                    ├── Entity
+│                    ├── Projectile
+│                    └── Shuttle
+└── 📂 test/
+     └── 📂 java/
+       └── 📂 sdm.space/
+            ├── TestAlien
+            ├── TestAlienSpeedy
+            ├── TestBarrier
+            ├── TestBomb
+            ├── TestCollision
+            ├── TestProjectile
+            └── TestShuttle
+```
