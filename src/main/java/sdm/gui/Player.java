@@ -3,58 +3,61 @@ package sdm.gui;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.swing.*;
+import javax.sound.sampled.FloatControl;
 import java.io.*;
 
-class Player {
-    Clip clip;
-    String menuAudioPath = "resources/menu.wav";
-    String backgroundAudio = "resources/audioSpace.wav";
-    String gameOverPath = "resources/gameOver.wav";
-    String projectilePath = "resources/shot.wav";
-    String victoryPath = "resources/victory.wav";
-    String deadPath = "resources/dead.wav";
-
-    void playMusic(String musicLoc){
+public class Player {
+    private static Clip clip;
+    private static void playMusic(String musicLoc){
         try {
             File musicPath = new File(musicLoc);
             if(musicPath.exists()){
                 AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
                 clip = AudioSystem.getClip();
                 clip.open(audioInput);
+                FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                volumeControl.setValue(-10f);
+                if (musicLoc.contains("background")){
+                    volumeControl.setValue(-20f);
+                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+                }
                 clip.start();
+
             }
         }
         catch (Exception ex){
             ex.printStackTrace();
         }
     }
-    void setMenuAudio(){
+    public static void setMenuAudio(){
+        String menuAudioPath = "resources/audio/menu.wav";
         playMusic(menuAudioPath);
     }
-    void setBackgroundAudio(){
+
+    public static void setBackgroundAudio(){
+        String backgroundAudio = "resources/audio/background.wav";
         stopMusic();
         playMusic(backgroundAudio);
     }
-    void setGameOverAudio(){
-        stopMusic();
+    public static void setGameOverAudio(){
+        String gameOverPath = "resources/audio/gameOver.wav";
         playMusic(gameOverPath);
     }
-    void setProjectileAudio(){
-        stopMusic();
+    public static void setProjectileAudio(){
+        String projectilePath = "resources/audio/shot.wav";
         playMusic(projectilePath);
     }
-    void setVictoryAudio(){
-        stopMusic();
+    public static void setVictoryAudio(){
+        String victoryPath = "resources/audio/victory.wav";
         playMusic(victoryPath);
     }
 
-    void setDeadAudio(){
-        stopMusic();
+    public static void setDeadAudio(){
+        String deadPath = "resources/audio/dead.wav";
         playMusic(deadPath);
     }
 
-    void stopMusic(){
+    private static void stopMusic(){
         if (clip != null && clip.isRunning()) {
         clip.stop();
         clip.close();}

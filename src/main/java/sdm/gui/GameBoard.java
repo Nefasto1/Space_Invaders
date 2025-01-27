@@ -16,8 +16,6 @@ public class GameBoard extends JPanel {
     private long lastShot;
     private String state = "Start";
 
-    private Player player;
-
     public GameBoard(int windowWidth, int windowHeight) {
         initializeBoard(windowWidth, windowHeight);
     }
@@ -35,9 +33,7 @@ public class GameBoard extends JPanel {
 
         game = new GameManager(windowWidth, windowHeight);
 
-        player = new Player();
-        player.setMenuAudio();
-        ;
+        Player.setMenuAudio();
     }
 
     @Override
@@ -73,43 +69,42 @@ public class GameBoard extends JPanel {
         SwingUtilities.getWindowAncestor(this).setSize(width, height);
         if (startMenu.isStart()) {
             state = "Game";
-            player.setBackgroundAudio();
+            Player.setBackgroundAudio();
             game.reset(startMenu.getNumBarriers(), startMenu.getNumRows(), startMenu.getColor(), width, height);
         }
     }
 
     private void drawGame(Graphics2D g2d) {
-        int width = getWidth();
-        int height = getHeight();
+        int width = startMenu.getWindowSize();
+        int height = startMenu.getWindowSize();
 
         gameMenu.draw(g2d, width, height, game);
         if (game.isEnded()) {
             endMenu.reset();
             state = "End";
             if (Objects.equals(game.getResult(), "Game Over")){
-                player.setGameOverAudio();}
+                Player.setGameOverAudio();}
             else {
-                player.setVictoryAudio();
+                Player.setVictoryAudio();
             }
         }
     }
 
     private void drawEndMenu(Graphics2D g2d) {
-        int width = getWidth();
-        int height = getHeight();
+        int width = startMenu.getWindowSize();
+        int height = startMenu.getWindowSize();
 
         endMenu.draw(g2d, width, height, game.getScore(), game.getResult());
 
         if (endMenu.isRetry()) {
             game.reset(startMenu.getNumBarriers(), startMenu.getNumRows(), startMenu.getColor(), width, height);
             state = "Game";
-            player.setBackgroundAudio();
+            Player.setBackgroundAudio();
         }
 
         if (endMenu.isGoToSettings()){
             startMenu.reset();
             state = "Start";
-            player.setMenuAudio();
         }
     }
 
@@ -126,8 +121,7 @@ public class GameBoard extends JPanel {
                 if (e.getKeyCode() == KeyEvent.VK_UP && current_time - lastShot > 500) {
                     game.shuttleShot();
 
-                    Player playShot = new Player();
-                    playShot.setProjectileAudio();
+                    Player.setProjectileAudio();
                     lastShot = System.currentTimeMillis();
                 }
             }

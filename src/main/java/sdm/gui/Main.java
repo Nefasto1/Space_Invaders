@@ -20,7 +20,7 @@ public class Main extends JFrame {
         setTitle("Space Invaders");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        ImageIcon myIcon = new ImageIcon("resources/alien.png");
+        ImageIcon myIcon = new ImageIcon("resources/images/alien.png");
         setIconImage(myIcon.getImage());
     }
 

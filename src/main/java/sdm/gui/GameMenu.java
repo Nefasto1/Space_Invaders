@@ -31,14 +31,14 @@ public class GameMenu {
         var small = new Font("Helvetica", Font.BOLD, 14);
         var fontMetrics = g2d.getFontMetrics(small);
         Image image;
-        ImageIcon imageIcon = new ImageIcon("resources/heart.png");
+        ImageIcon imageIcon = new ImageIcon("resources/images/heart.png");
         image = imageIcon.getImage();
         g2d.setColor(Color.white);
         g2d.setFont(small);
-        g2d.drawString("Score: " + score, (width - fontMetrics.stringWidth("Score: " + score)) - 30,height - 110);
+        g2d.drawString("Score: " + score, (width - fontMetrics.stringWidth("Score: " + score)) - 30,height - 100);
         IntStream.range(0, lives)
                 .forEach(i -> {
-                    g2d.drawImage(image, width - 50 - i * 25, height - 145, 30,15, panel);
+                    g2d.drawImage(image, width - 50 - i * 25, height - 135, 30,15, panel);
                 });
     }
 

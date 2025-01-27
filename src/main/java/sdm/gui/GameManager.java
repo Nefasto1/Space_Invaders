@@ -25,7 +25,6 @@ public class GameManager implements ActionListener {
     private int lastShotTime;
     private int lives;
 
-    private Player shuttleShotted;
 
     public GameManager(int windowWidth, int windowHeight) {
         timer = new Timer(10, this);
@@ -49,8 +48,6 @@ public class GameManager implements ActionListener {
         score = 0;
         speedyKilled = 0;
         lives = 3;
-
-        shuttleShotted = new Player();
 
         timer.restart();
     }
@@ -103,7 +100,7 @@ public class GameManager implements ActionListener {
         bombList.stream().filter(Bomb::isAlive).forEach(bomb -> {
             if (CollisionChecker.check(bomb, shuttle)){
                 lives--;
-                shuttleShotted.setDeadAudio();
+                Player.setDeadAudio();
                 bomb.die();
             }
             if (lives == 0)

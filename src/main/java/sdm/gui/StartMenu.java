@@ -31,7 +31,7 @@ public class StartMenu {
         images = new Image[3];
         IntStream.range(0, spaceshipColors.length)
                 .forEach(i -> {
-                    ImageIcon image = new ImageIcon("resources/spaceship_" + spaceshipColors[i] + ".png");
+                    ImageIcon image = new ImageIcon("resources/images/spaceship_" + spaceshipColors[i] + ".png");
                     images[i] = image.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT);
                 });
         this.panel = panel;

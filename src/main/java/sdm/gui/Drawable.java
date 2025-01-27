@@ -31,7 +31,7 @@ public abstract class Drawable extends Entity {
 
     protected void loadImage(String imageName) {
         if (imageName != null) {
-            ImageIcon ii = new ImageIcon("resources/" + imageName);
+            ImageIcon ii = new ImageIcon("resources/images/" + imageName);
             image = ii.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT);
         } else {
             image = null;
