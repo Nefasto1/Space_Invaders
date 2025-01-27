@@ -46,7 +46,7 @@ To run the game:
 - Press up to shoot lasers.
 - Avoid collisions with bomb.
 - Eliminate all aliens and prevent them from reaching the line or destroying the shuttle.
-- 
+
 ## Directory Structure
 
 The source folder is organized as follows:
@@ -86,3 +86,6 @@ The source folder is organized as follows:
             ├── TestProjectile
             └── TestShuttle
 ```
+This project uses a test driven development (except from the GUI). All tests involved are collected in the *test* directory.
+The *space* directory contains the class entity and all the actual entities that will appear on the GUI.
+In the *gui* directory there are all files responsible for showing the game window and it's component and for managing interactions between entities.
