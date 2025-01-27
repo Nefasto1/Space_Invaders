@@ -114,8 +114,6 @@ public class GameBoard extends JPanel {
     }
 
     private class TAdapter extends KeyAdapter {
-        //String shotSoundPath =
-        //        "resources/shot.wav";
         @Override
         public void keyPressed(KeyEvent e) {
             if (state.equals("Game")) {
@@ -129,7 +127,6 @@ public class GameBoard extends JPanel {
                     game.shuttleShot();
 
                     Player playShot = new Player();
-                    //playShot.playMusic(shotSoundPath);
                     playShot.setProjectileAudio();
                     lastShot = System.currentTimeMillis();
                 }
