@@ -27,7 +27,7 @@ jar {
 
 tasks.register('copyResourcesToLibs', Copy) {
     from 'resources'
-    into "$buildDir/libs/resources"
+    into "build/libs/resources"
 }
 
 tasks.build {
