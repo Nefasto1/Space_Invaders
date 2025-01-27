@@ -16,9 +16,9 @@ public class Player {
                 clip = AudioSystem.getClip();
                 clip.open(audioInput);
                 FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-                volumeControl.setValue(-10f);
+                volumeControl.setValue(-8f);
                 if (musicLoc.contains("background")){
-                    volumeControl.setValue(-20f);
+                    volumeControl.setValue(-5f);
                     clip.loop(Clip.LOOP_CONTINUOUSLY);
                 }
                 clip.start();
