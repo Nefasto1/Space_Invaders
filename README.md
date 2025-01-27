@@ -27,27 +27,27 @@ To run the game:
 2. Clone this repository 
 3. Run the following commands:
     ```
-    .\gradlew build
+    ./gradlew build
     ```
-    this will create the build directory with the .jar file
+    this will create the build directory containing the .jar file
     ```
     cd build/libs
     ```
-    to navigate to the folder in which there is the .jar file
+    to navigate to the folder in which the .jar file is
     ```
     java -jar Space_Invaders-1.0-SNAPSHOT.jar 
     ```
    to run the game.
 
 
-## Usage
+## Game Commands
 
 - Use arrow keys to move the spaceship left and right.
 - Press up to shoot lasers.
 - Avoid collisions with bomb.
-- Shot all alien and avoid they reach the line or kill the shuttle.
-
-## Code Structure
+- Eliminate all aliens and prevent them from reaching the line or destroying the shuttle.
+- 
+## Directory Structure
 
 The source folder is organized as follows:
 ```
